@@ -1,0 +1,5 @@
+GET http://localhost:8080/users/current
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiZXhwIjoxNjI5MTMxMDkwLCJyb2xlcyI6WyJNRU5UT1IiXX0.PAEuh26YNwqkDuXZbb5K9mo4Lu9Csu9RNYPS_gYQfAA
+
+###

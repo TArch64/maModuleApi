@@ -14,7 +14,7 @@ class AuthTokenService(private val envService: EnvService) {
             .setSubject(user.username)
             .setExpiration(Date(System.currentTimeMillis() + envService.authTokenExpiration))
             .claim("roles", user.authorities.map { it.authority })
-            .signWith(SignatureAlgorithm.HS256, envService.authTokenSecret)
+            .signWith(envService.authTokenSecretKey, SignatureAlgorithm.HS256)
             .compact()
     }
 }

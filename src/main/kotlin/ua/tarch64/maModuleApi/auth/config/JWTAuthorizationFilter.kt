@@ -34,7 +34,7 @@ class JWTAuthorizationFilter(
         val roles: List<GrantedAuthority>
         try {
             val claims: Claims = Jwts.parserBuilder()
-                .setSigningKey(envService.authTokenSecret)
+                .setSigningKey(envService.authTokenSecretKey)
                 .build()
                 .parseClaimsJws(token)
                 .body

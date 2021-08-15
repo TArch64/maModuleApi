@@ -2,9 +2,9 @@ POST http://localhost:8080/auth/sign-up
 Content-Type: application/json
 
 {
-  "username": "test-1",
-  "password": "test",
-  "role": "MENTOR"
+  "username": "admin",
+  "password": "admin",
+  "role": "ADMIN"
 }
 
 ###
@@ -12,8 +12,8 @@ POST http://localhost:8080/auth/sign-in
 Content-Type: application/json
 
 {
-  "username": "test",
-  "password": "test"
+  "username": "admin",
+  "password": "admin"
 }
 
 ###

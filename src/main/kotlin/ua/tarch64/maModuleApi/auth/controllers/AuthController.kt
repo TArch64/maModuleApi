@@ -8,14 +8,10 @@ import ua.tarch64.maModuleApi.auth.AuthFacade
 import ua.tarch64.maModuleApi.auth.controllers.requests.SignInRequest
 import ua.tarch64.maModuleApi.auth.controllers.requests.SignUpRequest
 import ua.tarch64.maModuleApi.auth.controllers.responses.AuthResponse
-import ua.tarch64.maModuleApi.user.services.UsersService
 
 @RestController
 @RequestMapping("/auth")
-class AuthController(
-    private val usersService: UsersService,
-    private val authFacade: AuthFacade
-) {
+class AuthController(private val authFacade: AuthFacade) {
     @PostMapping("/sign-in")
     fun signIn(@RequestBody body: SignInRequest): AuthResponse {
         val token = authFacade.signIn(body.username, body.password)

@@ -13,7 +13,6 @@ data class UserEntity(
     val role: UserRoles,
     @Column(unique = true)
     val username: String,
-    @field:JsonIgnore
     val password: String
 ) {
     data class CreateOptions(

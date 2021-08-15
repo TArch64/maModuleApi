@@ -1,0 +1,21 @@
+POST http://localhost:8080/admin/course-seasons/active
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYyOTEzNjI3OCwicm9sZXMiOlsiQURNSU4iXX0.YJxl7Th63onEChqZmSoL6eMsTPMBvcXu_93F-VRfsuc
+
+###
+
+POST http://localhost:8080/admin/seasons/9/courses
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYyOTEzNjI3OCwicm9sZXMiOlsiQURNSU4iXX0.YJxl7Th63onEChqZmSoL6eMsTPMBvcXu_93F-VRfsuc
+
+{
+  "name": "Node.js",
+  "type": "GENERAL"
+}
+
+###
+GET http://localhost:8080/admin/seasons/9/courses
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYyOTEzNjI3OCwicm9sZXMiOlsiQURNSU4iXX0.YJxl7Th63onEChqZmSoL6eMsTPMBvcXu_93F-VRfsuc
+
+###

@@ -1,3 +1,8 @@
 package ua.tarch64.maModuleApi.auth.controllers.responses
 
-data class AuthResponse(val token: String)
+import ua.tarch64.maModuleApi.user.controllers.responses.UserResponse
+
+data class AuthResponse(
+    val token: String,
+    val user: UserResponse
+)

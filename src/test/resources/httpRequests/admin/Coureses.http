@@ -1,6 +1,6 @@
 POST http://localhost:8080/admin/course-seasons/active
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYyOTEzNjI3OCwicm9sZXMiOlsiQURNSU4iXX0.YJxl7Th63onEChqZmSoL6eMsTPMBvcXu_93F-VRfsuc
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYyOTIzMjYwMywicm9sZXMiOlsiQURNSU4iXX0.ab8VN7Tzc476CJhV_eeqRsO37qgzdcGdppQFQabFKQ8
 
 ###
 
@@ -16,6 +16,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYyOTEzN
 ###
 GET http://localhost:8080/admin/seasons/9/courses
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYyOTEzNjI3OCwicm9sZXMiOlsiQURNSU4iXX0.YJxl7Th63onEChqZmSoL6eMsTPMBvcXu_93F-VRfsuc
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYyOTIzMjYwMywicm9sZXMiOlsiQURNSU4iXX0.ab8VN7Tzc476CJhV_eeqRsO37qgzdcGdppQFQabFKQ8
 
 ###

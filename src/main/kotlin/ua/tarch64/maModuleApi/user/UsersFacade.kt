@@ -7,6 +7,6 @@ import ua.tarch64.maModuleApi.user.services.CurrentUserService
 @Component
 class UsersFacade(private val currentUserService: CurrentUserService) {
     fun fetchCurrentUser(): UserEntity {
-        return this.currentUserService.fetchCurrentUser()
+        return currentUserService.fetchCurrentUser()
     }
 }

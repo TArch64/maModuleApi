@@ -24,6 +24,10 @@ class CoursesService(
         return courseSeasonsRepository.findByActiveTrue()
     }
 
+    fun getSeasons(): List<CourseSeasonEntity> {
+        return courseSeasonsRepository.findAll()
+    }
+
     @Transactional
     fun saveSeasons(seasons: List<CourseSeasonEntity>): List<CourseSeasonEntity> {
         return courseSeasonsRepository.saveAll(seasons)

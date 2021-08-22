@@ -13,6 +13,10 @@ class CoursesAdminService(private val coursesService: CoursesService) {
         return coursesService.getSeasonCourses(seasonId)
     }
 
+    fun getSeasons(): List<CourseSeasonEntity> {
+        return coursesService.getSeasons()
+    }
+
     fun addActiveSeason(): CourseSeasonEntity {
         val savingSeasons = mutableListOf<CourseSeasonEntity>()
 

@@ -18,8 +18,8 @@ class CourseSeasonsController(private val coursesFacade: CoursesFacade) {
         return seasons.map(CourseSeasonResponse::fromEntity)
     }
 
-    @PostMapping("/active")
+    @PostMapping
     fun addSeason(): CourseSeasonResponse {
-        return CourseSeasonResponse.fromEntity(coursesFacade.addActiveSeason())
+        return CourseSeasonResponse.fromEntity(coursesFacade.addSeason())
     }
 }

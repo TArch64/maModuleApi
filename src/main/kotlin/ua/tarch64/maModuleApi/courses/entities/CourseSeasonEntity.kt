@@ -3,6 +3,7 @@ package ua.tarch64.maModuleApi.courses.entities
 import javax.persistence.*
 
 @Entity
+@Table(name = "course_seasons")
 data class CourseSeasonEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -11,6 +12,7 @@ data class CourseSeasonEntity(
     @Column(unique = true)
     val value: Int,
 
+    @Column(unique = true)
     var active: Boolean,
 
     @Column(unique = true)

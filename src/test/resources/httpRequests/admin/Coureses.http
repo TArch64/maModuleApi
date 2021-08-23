@@ -3,9 +3,9 @@ Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYyOTczNTMxMywicm9sZXMiOlsiQURNSU4iXX0.-E9mTpI3PtyFpLDrtma8D3m-mk5uh6eEfmreiURyb-Y
 
 ###
-POST http://localhost:8080/admin/course-seasons/active
+POST http://localhost:8080/admin/course-seasons
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYyOTczNTMxMywicm9sZXMiOlsiQURNSU4iXX0.-E9mTpI3PtyFpLDrtma8D3m-mk5uh6eEfmreiURyb-Y
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYyOTgyMzQ3Nywicm9sZXMiOlsiQURNSU4iXX0.rxT9VKyA_IthEgdDQglLo3Bhdd1col32J0GoqmBAV9w
 
 ###
 

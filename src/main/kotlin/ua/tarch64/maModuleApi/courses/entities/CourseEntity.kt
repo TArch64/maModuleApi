@@ -4,6 +4,7 @@ import ua.tarch64.maModuleApi.courses.enums.CourseTypes
 import javax.persistence.*
 
 @Entity
+@Table(name = "courses")
 data class CourseEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -5,6 +5,7 @@ import ua.tarch64.maModuleApi.user.enums.UserRoles
 import javax.persistence.*
 
 @Entity
+@Table(name = "users")
 data class UserEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

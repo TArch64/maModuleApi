@@ -17,12 +17,14 @@ class CoursesAdminService(private val coursesService: CoursesService) {
         return coursesService.getSeasons()
     }
 
-    fun addActiveSeason(): CourseSeasonEntity {
+    fun addSeason(): CourseSeasonEntity {
         val savingSeasons = mutableListOf<CourseSeasonEntity>()
 
-        val lastSeason = coursesService.getActiveSeason()?.apply {
-            active = false
-            savingSeasons.add(this)
+        val lastSeason = coursesService.getLastSeason()?.apply {
+            if (active) {
+                active = false
+                savingSeasons.add(this)
+            }
         }
 
         savingSeasons.add(CourseSeasonEntity(

@@ -1,5 +1,6 @@
 package ua.tarch64.maModuleApi.courses.services
 
+import org.springframework.data.domain.Sort
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import ua.tarch64.maModuleApi.courses.entities.CourseEntity
@@ -20,12 +21,12 @@ class CoursesService(
         return getSeason(seasonId).courses
     }
 
-    fun getActiveSeason(): CourseSeasonEntity? {
-        return courseSeasonsRepository.findByActiveTrue()
+    fun getLastSeason(): CourseSeasonEntity? {
+        return courseSeasonsRepository.findLastSeason()
     }
 
     fun getSeasons(): List<CourseSeasonEntity> {
-        return courseSeasonsRepository.findAll()
+        return courseSeasonsRepository.findAll(Sort.by(Sort.Direction.DESC, "value"))
     }
 
     @Transactional

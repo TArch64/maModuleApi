@@ -8,7 +8,7 @@ import ua.tarch64.maModuleApi.courses.entities.CourseSeasonEntity
 @Repository
 interface CourseSeasonsRepository: JpaRepository<CourseSeasonEntity, Long> {
     @Query("""
-        SELECT * FROM course_seasons as cs
+        SELECT * FROM course_seasons AS cs
         WHERE cs.active = true OR cs.value = (SELECT MAX(value) FROM course_seasons)
         LIMIT 1
     """, nativeQuery = true)

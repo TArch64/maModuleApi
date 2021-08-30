@@ -18,24 +18,15 @@ class CoursesAdminService(private val coursesService: CoursesService) {
     }
 
     fun addSeason(): CourseSeasonEntity {
-        val savingSeasons = mutableListOf<CourseSeasonEntity>()
-
-        val lastSeason = coursesService.getLastSeason()?.apply {
-            if (active) {
-                active = false
-                savingSeasons.add(this)
-            }
-        }
-
-        savingSeasons.add(CourseSeasonEntity(
+        val lastSeason = coursesService.getLastSeason()
+        val newSeason = CourseSeasonEntity(
             id = 0,
             value = (lastSeason?.value ?: 0) + 1,
             active = true,
-            year = Year.now().value,
+            year = getCurrentYear(),
             courses = emptyList()
-        ))
-
-        return coursesService.saveSeasons(savingSeasons).last()
+        )
+        return coursesService.saveSeason(newSeason)
     }
 
     fun addCourse(seasonId: Long, name: String, type: CourseTypes): CourseEntity {
@@ -47,4 +38,6 @@ class CoursesAdminService(private val coursesService: CoursesService) {
         )
         return coursesService.saveCourse(course)
     }
+
+    private fun getCurrentYear(): Int = Year.now().value
 }

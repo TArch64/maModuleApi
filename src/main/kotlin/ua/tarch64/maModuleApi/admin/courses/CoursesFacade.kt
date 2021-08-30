@@ -10,12 +10,12 @@ import ua.tarch64.maModuleApi.courses.enums.CourseTypes
 class CoursesFacade(
     private val coursesService: CoursesAdminService
 ) {
-    fun addSeason(): CourseSeasonEntity {
-        return coursesService.addSeason()
-    }
-
     fun getSeasons(): List<CourseSeasonEntity> {
         return coursesService.getSeasons()
+    }
+
+    fun addSeason(): CourseSeasonEntity {
+        return coursesService.addSeason()
     }
 
     fun getCourses(seasonId: Long): List<CourseEntity> {

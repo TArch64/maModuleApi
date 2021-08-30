@@ -30,8 +30,8 @@ class CoursesService(
     }
 
     @Transactional
-    fun saveSeasons(seasons: List<CourseSeasonEntity>): List<CourseSeasonEntity> {
-        return courseSeasonsRepository.saveAll(seasons)
+    fun saveSeason(season: CourseSeasonEntity): CourseSeasonEntity {
+        return courseSeasonsRepository.save(season)
     }
 
     @Transactional

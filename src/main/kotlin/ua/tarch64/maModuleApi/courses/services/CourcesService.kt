@@ -3,6 +3,7 @@ package ua.tarch64.maModuleApi.courses.services
 import org.springframework.data.domain.Sort
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import ua.tarch64.maModuleApi.common.helpers.asKOptional
 import ua.tarch64.maModuleApi.courses.entities.CourseEntity
 import ua.tarch64.maModuleApi.courses.entities.CourseSeasonEntity
 import ua.tarch64.maModuleApi.courses.repositories.CourseSeasonsRepository
@@ -27,6 +28,10 @@ class CoursesService(
 
     fun getSeasons(): List<CourseSeasonEntity> {
         return courseSeasonsRepository.findAll(Sort.by(Sort.Direction.DESC, "value"))
+    }
+
+    fun getActiveSeason(): CourseSeasonEntity? {
+        return courseSeasonsRepository.findByActiveTrue().asKOptional()
     }
 
     @Transactional

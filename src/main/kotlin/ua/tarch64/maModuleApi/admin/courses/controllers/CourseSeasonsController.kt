@@ -22,4 +22,9 @@ class CourseSeasonsController(private val coursesFacade: CoursesFacade) {
     fun addSeason(): CourseSeasonResponse {
         return CourseSeasonResponse.fromEntity(coursesFacade.addSeason())
     }
+
+    @PostMapping("/active/finish")
+    fun finishActiveSeason() {
+        coursesFacade.finishActiveSeason()
+    }
 }

@@ -13,7 +13,7 @@ data class CourseSeasonEntity(
     val value: Int,
 
     @Column(unique = true)
-    var active: Boolean,
+    val active: Boolean,
 
     @Column(unique = true)
     val year: Int,

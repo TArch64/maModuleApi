@@ -1,6 +1,7 @@
 package ua.tarch64.maModuleApi.admin.courses.services
 
 import org.springframework.stereotype.Service
+import ua.tarch64.maModuleApi.common.errorHandling.exceptions.ValidationException
 import ua.tarch64.maModuleApi.courses.entities.CourseEntity
 import ua.tarch64.maModuleApi.courses.entities.CourseSeasonEntity
 import ua.tarch64.maModuleApi.courses.enums.CourseTypes
@@ -19,14 +20,24 @@ class CoursesAdminService(private val coursesService: CoursesService) {
 
     fun addSeason(): CourseSeasonEntity {
         val lastSeason = coursesService.getLastSeason()
-        val newSeason = CourseSeasonEntity(
+        val currentYear = getCurrentYear()
+
+        if (lastSeason?.year == currentYear) {
+            throw ValidationException("Season for this year already exists")
+        }
+
+        return coursesService.saveSeason(CourseSeasonEntity(
             id = 0,
             value = (lastSeason?.value ?: 0) + 1,
             active = true,
-            year = getCurrentYear(),
+            year = currentYear,
             courses = emptyList()
-        )
-        return coursesService.saveSeason(newSeason)
+        ))
+    }
+
+    fun finishActiveSeason() {
+        val activeSeason = coursesService.getActiveSeason() ?: throw ValidationException("There are no active seasons")
+        coursesService.saveSeason(activeSeason.copy(active = false))
     }
 
     fun addCourse(seasonId: Long, name: String, type: CourseTypes): CourseEntity {

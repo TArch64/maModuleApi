@@ -8,7 +8,7 @@ import ua.tarch64.maModuleApi.common.errorHandling.responses.ErrorResponse
 @Service
 class ErrorResponseFactory {
     fun createValidationResponse(exception: ValidationException): ResponseEntity<ErrorResponse> {
-        val body = ErrorResponse(exception.message, exception.details)
+        val body = ErrorResponse(exception.message, ErrorResponse.Types.VALIDATION, exception.details)
         return ResponseEntity.unprocessableEntity().body(body)
     }
 }

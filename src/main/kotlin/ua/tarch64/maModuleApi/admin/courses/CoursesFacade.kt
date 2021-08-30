@@ -18,6 +18,10 @@ class CoursesFacade(
         return coursesService.addSeason()
     }
 
+    fun finishActiveSeason() {
+        coursesService.finishActiveSeason()
+    }
+
     fun getCourses(seasonId: Long): List<CourseEntity> {
         return coursesService.getSeasonCourses(seasonId)
     }

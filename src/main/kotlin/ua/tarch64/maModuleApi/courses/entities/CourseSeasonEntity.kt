@@ -15,7 +15,6 @@ data class CourseSeasonEntity(
     @Column(unique = true)
     val active: Boolean,
 
-    @Column(unique = true)
     val year: Int,
 
     @OneToMany(

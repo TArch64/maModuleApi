@@ -19,18 +19,12 @@ class CoursesAdminService(private val coursesService: CoursesService) {
     }
 
     fun addSeason(): CourseSeasonEntity {
-        val lastSeason = coursesService.getLastSeason()
-        val currentYear = getCurrentYear()
-
-        if (lastSeason?.year == currentYear) {
-            throw ValidationException("Season for this year already exists")
-        }
-
+        val lastSeasonValue = coursesService.getLastSeason()?.value ?: 0
         return coursesService.saveSeason(CourseSeasonEntity(
             id = 0,
-            value = (lastSeason?.value ?: 0) + 1,
+            value = lastSeasonValue + 1,
             active = true,
-            year = currentYear,
+            year = getCurrentYear(),
             courses = emptyList()
         ))
     }

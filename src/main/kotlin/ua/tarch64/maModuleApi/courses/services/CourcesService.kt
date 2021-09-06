@@ -34,6 +34,10 @@ class CoursesService(
         return courseSeasonsRepository.findByActiveTrue().asKOptional()
     }
 
+    fun getCourseByName(seasonId: Long, courseName: String): CourseEntity? {
+        return coursesRepository.findByName(seasonId, courseName)
+    }
+
     @Transactional
     fun saveSeason(season: CourseSeasonEntity): CourseSeasonEntity {
         return courseSeasonsRepository.save(season)

@@ -4,13 +4,17 @@ import ua.tarch64.maModuleApi.courses.enums.CourseTypes
 import javax.persistence.*
 
 @Entity
-@Table(name = "courses")
+@Table(
+    name = "courses",
+    uniqueConstraints = [
+        UniqueConstraint(columnNames = ["season_id", "name"])
+    ]
+)
 data class CourseEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     val id: Long,
 
-    @Column(unique = true)
     val name: String,
 
     @Enumerated

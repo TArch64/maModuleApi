@@ -11,4 +11,8 @@ class ErrorResponseFactory {
         val body = ErrorResponse(exception.message, ErrorResponse.Types.VALIDATION, exception.details)
         return ResponseEntity.unprocessableEntity().body(body)
     }
+
+    fun createValidationResponse(message: String): ResponseEntity<ErrorResponse> {
+        return createValidationResponse(ValidationException(message))
+    }
 }

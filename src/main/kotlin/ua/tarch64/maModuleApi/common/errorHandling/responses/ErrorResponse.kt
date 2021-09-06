@@ -1,5 +1,7 @@
 package ua.tarch64.maModuleApi.common.errorHandling.responses
 
+import org.springframework.http.ResponseEntity
+
 data class ErrorResponse(
     val message: String,
     val type: Types,

@@ -1,6 +1,5 @@
 package ua.tarch64.maModuleApi.user.entities
 
-import com.fasterxml.jackson.annotation.JsonIgnore
 import ua.tarch64.maModuleApi.user.enums.UserRoles
 import javax.persistence.*
 

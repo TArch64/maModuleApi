@@ -10,7 +10,7 @@ import java.util.*
 interface CourseSeasonsRepository: JpaRepository<CourseSeasonEntity, Long> {
     @Query("""
         SELECT * FROM course_seasons AS cs
-        WHERE cs.active = true OR cs.value = (SELECT MAX(value) FROM course_seasons)
+        WHERE cs.value = (SELECT MAX(value) FROM course_seasons)
         LIMIT 1
     """, nativeQuery = true)
     fun findLastSeason(): CourseSeasonEntity?

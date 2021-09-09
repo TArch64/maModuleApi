@@ -12,13 +12,13 @@ import javax.validation.Valid
 @RequestMapping("/admin")
 class CoursesController(private val coursesFacade: CoursesFacade) {
     @GetMapping("/seasons/{season_id}/courses")
-    fun getCourses(@PathVariable(name = "season_id") seasonId: Long): List<CourseResponse> {
+    fun getCourses(@PathVariable("season_id") seasonId: Long): List<CourseResponse> {
         return coursesFacade.getCourses(seasonId).map(CourseResponse::fromEntity)
     }
 
     @PostMapping("/seasons/{season_id}/courses")
     fun addCourse(
-        @PathVariable(name = "season_id") seasonId: Long,
+        @PathVariable("season_id") seasonId: Long,
         @Valid @RequestBody body: AddCourseRequest
     ): CourseResponse {
         val course = coursesFacade.addCourse(seasonId, body.name, body.type)

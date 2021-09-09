@@ -8,6 +8,7 @@ import ua.tarch64.maModuleApi.courses.entities.CourseEntity
 import ua.tarch64.maModuleApi.courses.entities.CourseSeasonEntity
 import ua.tarch64.maModuleApi.courses.repositories.CourseSeasonsRepository
 import ua.tarch64.maModuleApi.courses.repositories.CoursesRepository
+import javax.persistence.EntityNotFoundException
 
 @Service
 class CoursesService(
@@ -34,6 +35,18 @@ class CoursesService(
         return courseSeasonsRepository.findByActiveTrue().asKOptional()
     }
 
+    fun getSeasonById(id: Long): CourseSeasonEntity? {
+        return try {
+            courseSeasonsRepository.getById(id)
+        } catch (exception: EntityNotFoundException) {
+            null
+        }
+    }
+
+    fun removeSeason(season: CourseSeasonEntity) {
+        courseSeasonsRepository.delete(season)
+    }
+
     fun getCourseByName(seasonId: Long, courseName: String): CourseEntity? {
         return coursesRepository.findByName(seasonId, courseName)
     }
@@ -41,6 +54,11 @@ class CoursesService(
     @Transactional
     fun saveSeason(season: CourseSeasonEntity): CourseSeasonEntity {
         return courseSeasonsRepository.save(season)
+    }
+
+    @Transactional
+    fun saveSeasons(seasons: List<CourseSeasonEntity>): List<CourseSeasonEntity> {
+        return courseSeasonsRepository.saveAllAndFlush(seasons)
     }
 
     @Transactional

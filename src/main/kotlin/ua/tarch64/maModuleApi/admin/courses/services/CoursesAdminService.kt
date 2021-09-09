@@ -18,20 +18,46 @@ class CoursesAdminService(private val coursesService: CoursesService) {
         return coursesService.getSeasons()
     }
 
-    fun addSeason(): CourseSeasonEntity {
+    fun addSeason(makeActive: Boolean): CourseSeasonEntity {
+        val savingSeasons = mutableListOf<CourseSeasonEntity>()
+
+        if (makeActive) {
+            coursesService.getActiveSeason()?.run {
+                savingSeasons.add(copy(active = false))
+            }
+        }
+
         val lastSeasonValue = coursesService.getLastSeason()?.value ?: 0
-        return coursesService.saveSeason(CourseSeasonEntity(
+        savingSeasons.add(CourseSeasonEntity(
             id = 0,
             value = lastSeasonValue + 1,
-            active = true,
+            active = makeActive,
             year = getCurrentYear(),
             courses = emptyList()
         ))
+
+        return coursesService.saveSeasons(savingSeasons).last()
     }
 
-    fun finishActiveSeason() {
-        val activeSeason = coursesService.getActiveSeason() ?: throw ValidationException("There are no active seasons")
-        coursesService.saveSeason(activeSeason.copy(active = false))
+    fun removeSeason(seasonId: Long) {
+        coursesService.removeSeason(getSeasonById(seasonId))
+    }
+
+    private fun getSeasonById(seasonId: Long): CourseSeasonEntity {
+        return coursesService.getSeasonById(seasonId) ?: throw ValidationException("Season not found")
+    }
+
+    fun activateSeason(seasonId: Long) {
+        coursesService.getActiveSeason()?.let {
+            throw ValidationException("Only one season can have active status at same time")
+        }
+        val season = getSeasonById(seasonId).copy(active = true)
+        coursesService.saveSeason(season)
+    }
+
+    fun deactivateSeason(seasonId: Long) {
+        val season = getSeasonById(seasonId).copy(active = false)
+        coursesService.saveSeason(season)
     }
 
     fun addCourse(seasonId: Long, name: String, type: CourseTypes): CourseEntity {

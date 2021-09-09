@@ -14,12 +14,20 @@ class CoursesFacade(
         return coursesService.getSeasons()
     }
 
-    fun addSeason(): CourseSeasonEntity {
-        return coursesService.addSeason()
+    fun addSeason(makeActive: Boolean): CourseSeasonEntity {
+        return coursesService.addSeason(makeActive)
     }
 
-    fun finishActiveSeason() {
-        coursesService.finishActiveSeason()
+    fun removeSeason(seasonId: Long) {
+        coursesService.removeSeason(seasonId)
+    }
+
+    fun activateSeason(seasonId: Long) {
+        coursesService.activateSeason(seasonId)
+    }
+
+    fun deactivateSeason(seasonId: Long) {
+        coursesService.deactivateSeason(seasonId)
     }
 
     fun getCourses(seasonId: Long): List<CourseEntity> {

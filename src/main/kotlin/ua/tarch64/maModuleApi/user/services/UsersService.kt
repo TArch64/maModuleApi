@@ -2,6 +2,7 @@ package ua.tarch64.maModuleApi.user.services
 
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
+import ua.tarch64.maModuleApi.common.helpers.asKOptional
 import ua.tarch64.maModuleApi.user.entities.UserEntity
 import ua.tarch64.maModuleApi.user.entities.UserRepository
 
@@ -22,5 +23,9 @@ class UsersService(
             passwordEncoder.encode(options.password)
         )
         return repository.save(user)
+    }
+
+    fun getUserById(userId: Long): UserEntity? {
+        return repository.findById(userId).asKOptional()
     }
 }

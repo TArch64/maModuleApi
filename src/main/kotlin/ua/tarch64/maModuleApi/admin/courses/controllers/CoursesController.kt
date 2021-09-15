@@ -2,8 +2,10 @@ package ua.tarch64.maModuleApi.admin.courses.controllers
 
 import org.springframework.web.bind.annotation.*
 import ua.tarch64.maModuleApi.admin.courses.CoursesFacade
+import ua.tarch64.maModuleApi.admin.courses.controllers.requests.AddCourseMemberRequest
 import ua.tarch64.maModuleApi.admin.courses.controllers.requests.AddCourseRequest
 import ua.tarch64.maModuleApi.admin.courses.controllers.responses.CourseResponse
+import ua.tarch64.maModuleApi.admin.courses.controllers.responses.FullCourseResponse
 import ua.tarch64.maModuleApi.auth.annotations.RequireAdminRole
 import javax.validation.Valid
 
@@ -23,5 +25,18 @@ class CoursesController(private val coursesFacade: CoursesFacade) {
     ): CourseResponse {
         val course = coursesFacade.addCourse(seasonId, body.name, body.type)
         return CourseResponse.fromEntity(course)
+    }
+
+    @GetMapping("/courses/{course_id}")
+    fun getCourseById(@PathVariable("course_id") courseId: Long): FullCourseResponse? {
+        return coursesFacade.getCourseById(courseId)?.let(FullCourseResponse::fromEntity)
+    }
+
+    @PostMapping("/courses/{course_id}/mentors")
+    fun addMentor(
+        @PathVariable("course_id") courseId: Long,
+        @Valid @RequestBody body: AddCourseMemberRequest
+    ) {
+        coursesFacade.addMentor(courseId, body.userId)
     }
 }

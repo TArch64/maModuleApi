@@ -5,9 +5,9 @@ import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotNull
 
 data class AddCourseRequest(
-    @NotBlank(message = "Name can't be blank")
+    @NotBlank(message = "'name' can't be blank")
     val name: String,
 
-    @NotNull
+    @NotNull(message = "'type' can't be blank")
     val type: CourseTypes
 )

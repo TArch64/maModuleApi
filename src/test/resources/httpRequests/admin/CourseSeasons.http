@@ -1,0 +1,8 @@
+GET http://localhost:8080/admin/course-seasons
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYzMTY0NTUxMiwicm9sZXMiOlsiQURNSU4iXX0.Ncnl97TCN8MYXNdk_0sKDyTU4snxUolufR01HwEVl-Y
+
+###
+POST http://localhost:8080/admin/course-seasons
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYyOTgyMzQ3Nywicm9sZXMiOlsiQURNSU4iXX0.rxT9VKyA_IthEgdDQglLo3Bhdd1col32J0GoqmBAV9w

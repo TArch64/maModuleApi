@@ -13,14 +13,24 @@ import javax.persistence.*
 data class CourseEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    val id: Long,
+    val id: Long = 0,
 
+    @Column(nullable = false)
     val name: String,
 
     @Enumerated
+    @Column(nullable = false)
     val type: CourseTypes,
 
-    @ManyToOne()
-    @JoinColumn(name = "season_id")
-    val season: CourseSeasonEntity
+    @ManyToOne
+    @JoinColumn(name = "season_id", nullable = false)
+    val season: CourseSeasonEntity,
+
+    @OneToMany(
+        targetEntity = CourseMentorEntity::class,
+        mappedBy = "course",
+        cascade = [CascadeType.ALL],
+        fetch = FetchType.LAZY
+    )
+    val mentors: List<CourseMentorEntity> = emptyList()
 )

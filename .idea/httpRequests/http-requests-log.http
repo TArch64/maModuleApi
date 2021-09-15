@@ -1,0 +1,481 @@
+GET http://localhost:8080/admin/courses/65
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYzMTgxNTc1MCwicm9sZXMiOlsiQURNSU4iXX0.iYJ06m_QgKby608K04R93XGa0jaMdQvpGIqlqyLIC1U
+
+<> 2021-09-15T210922.200.json
+
+###
+
+POST http://localhost:8080/auth/sign-in
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin"
+}
+
+<> 2021-09-15T210910.200.json
+
+###
+
+GET http://localhost:8080/admin/courses/65
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYzMTY0NTUxMiwicm9sZXMiOlsiQURNSU4iXX0.Ncnl97TCN8MYXNdk_0sKDyTU4snxUolufR01HwEVl-Y
+
+<> 2021-09-15T210858.403.json
+
+###
+
+GET http://localhost:8080/admin/courses/65
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYzMTY0NTUxMiwicm9sZXMiOlsiQURNSU4iXX0.Ncnl97TCN8MYXNdk_0sKDyTU4snxUolufR01HwEVl-Y
+
+<> 2021-09-15T210853.403.json
+
+###
+
+POST http://localhost:8080/admin/courses/65/mentors
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYzMTgxNDc3NSwicm9sZXMiOlsiQURNSU4iXX0.W752YZRWfVRrCbBAJS3VrnS3NWRUZ4ZlD48l1b0G2E8
+
+{
+  "userId": 67
+}
+
+###
+
+POST http://localhost:8080/auth/sign-up
+Content-Type: application/json
+
+{
+  "username": "mentor",
+  "password": "mentor",
+  "role": "MENTOR"
+}
+
+<> 2021-09-15T205341.200.json
+
+###
+
+POST http://localhost:8080/auth/sign-in
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin"
+}
+
+<> 2021-09-15T205255.200.json
+
+###
+
+GET http://localhost:8080/admin/courses/6000
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYzMTY0NTUxMiwicm9sZXMiOlsiQURNSU4iXX0.Ncnl97TCN8MYXNdk_0sKDyTU4snxUolufR01HwEVl-Y
+
+###
+
+GET http://localhost:8080/admin/courses/65
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYzMTY0NTUxMiwicm9sZXMiOlsiQURNSU4iXX0.Ncnl97TCN8MYXNdk_0sKDyTU4snxUolufR01HwEVl-Y
+
+<> 2021-09-13T215248.200.json
+
+###
+
+GET http://localhost:8080/admin/seasons/61/courses
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYzMTY0NTUxMiwicm9sZXMiOlsiQURNSU4iXX0.Ncnl97TCN8MYXNdk_0sKDyTU4snxUolufR01HwEVl-Y
+
+<> 2021-09-13T215226.200.json
+
+###
+
+GET http://localhost:8080/admin/course-seasons
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYzMTY0NTUxMiwicm9sZXMiOlsiQURNSU4iXX0.Ncnl97TCN8MYXNdk_0sKDyTU4snxUolufR01HwEVl-Y
+
+<> 2021-09-13T215215.200.json
+
+###
+
+POST http://localhost:8080/auth/sign-in
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin"
+}
+
+<> 2021-09-13T215152.200.json
+
+###
+
+GET http://localhost:8080/admin/course-seasons/manager-state
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYzMDM0NDQwOCwicm9sZXMiOlsiQURNSU4iXX0.jMUXtg-zENVsTbx9WhOhE8Ac-CsgnTTDcNTElx-zpjI
+
+<> 2021-08-29T202912.200.json
+
+###
+
+GET http://localhost:8080/admin/course-seasons/manager-state
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYzMDM0NDQwOCwicm9sZXMiOlsiQURNSU4iXX0.jMUXtg-zENVsTbx9WhOhE8Ac-CsgnTTDcNTElx-zpjI
+
+<> 2021-08-29T202852.200.json
+
+###
+
+GET http://localhost:8080/admin/course-seasons/manager-state
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYzMDM0NDQwOCwicm9sZXMiOlsiQURNSU4iXX0.jMUXtg-zENVsTbx9WhOhE8Ac-CsgnTTDcNTElx-zpjI
+
+<> 2021-08-29T202814.200.json
+
+###
+
+POST http://localhost:8080/auth/sign-in
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin"
+}
+
+<> 2021-08-29T202649.200.json
+
+###
+
+POST http://localhost:8080/admin/course-seasons
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYyOTgyMzQ3Nywicm9sZXMiOlsiQURNSU4iXX0.rxT9VKyA_IthEgdDQglLo3Bhdd1col32J0GoqmBAV9w
+
+<> 2021-08-23T194712.200.json
+
+###
+
+POST http://localhost:8080/admin/course-seasons
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYyOTgyMzQ3Nywicm9sZXMiOlsiQURNSU4iXX0.rxT9VKyA_IthEgdDQglLo3Bhdd1col32J0GoqmBAV9w
+
+<> 2021-08-23T194601.200.json
+
+###
+
+POST http://localhost:8080/admin/course-seasons
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYyOTgyMzQ3Nywicm9sZXMiOlsiQURNSU4iXX0.rxT9VKyA_IthEgdDQglLo3Bhdd1col32J0GoqmBAV9w
+
+<> 2021-08-23T194448.500.json
+
+###
+
+POST http://localhost:8080/auth/sign-in
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin"
+}
+
+<> 2021-08-23T194437.200.json
+
+###
+
+POST http://localhost:8080/admin/course-seasons
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYyOTczNTMxMywicm9sZXMiOlsiQURNSU4iXX0.-E9mTpI3PtyFpLDrtma8D3m-mk5uh6eEfmreiURyb-Y
+
+<> 2021-08-23T194430.403.json
+
+###
+
+POST http://localhost:8080/admin/course-seasons/active
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYyOTczNTMxMywicm9sZXMiOlsiQURNSU4iXX0.-E9mTpI3PtyFpLDrtma8D3m-mk5uh6eEfmreiURyb-Y
+
+<> 2021-08-22T191733.200.json
+
+###
+
+GET http://localhost:8080/admin/course-seasons
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYyOTczNTMxMywicm9sZXMiOlsiQURNSU4iXX0.-E9mTpI3PtyFpLDrtma8D3m-mk5uh6eEfmreiURyb-Y
+
+<> 2021-08-22T191616.200.json
+
+###
+
+GET http://localhost:8080/admin/course-seasons/
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYyOTczNTMxMywicm9sZXMiOlsiQURNSU4iXX0.-E9mTpI3PtyFpLDrtma8D3m-mk5uh6eEfmreiURyb-Y
+
+<> 2021-08-22T191610.200.json
+
+###
+
+GET http://localhost:8080/admin/course-seasons/
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYyOTczNTMxMywicm9sZXMiOlsiQURNSU4iXX0.-E9mTpI3PtyFpLDrtma8D3m-mk5uh6eEfmreiURyb-Y
+
+<> 2021-08-22T191541.200.json
+
+###
+
+GET http://localhost:8080/admin/course-seasons
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYyOTczNTMxMywicm9sZXMiOlsiQURNSU4iXX0.-E9mTpI3PtyFpLDrtma8D3m-mk5uh6eEfmreiURyb-Y
+
+<> 2021-08-22T191524.404.json
+
+###
+
+POST http://localhost:8080/auth/sign-in
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin"
+}
+
+<> 2021-08-22T191513.200.json
+
+###
+
+GET http://localhost:8080/admin/course-seasons
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYyOTIzMjYwMywicm9sZXMiOlsiQURNSU4iXX0.ab8VN7Tzc476CJhV_eeqRsO37qgzdcGdppQFQabFKQ8
+
+<> 2021-08-22T191505.403.json
+
+###
+
+GET http://localhost:8080/users/current
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYyOTIzNDI4Mywicm9sZXMiOlsiQURNSU4iXX0.Ij0s2ioQTcENrBF2X-svYoKQllS7on_8aL2_CCpKIx4
+
+<> 2021-08-18T212651.403.json
+
+###
+
+GET http://localhost:8080/users/current
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYyOTM5NzU4Miwicm9sZXMiOlsiQURNSU4iXX0.KoI5UCJvaJ1OIfJts3L8lndHz_Vm6o8PMgTkh9wR3Yw
+
+<> 2021-08-18T212635.200.json
+
+###
+
+POST http://localhost:8080/auth/sign-in
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin"
+}
+
+<> 2021-08-18T212622.200.json
+
+###
+
+POST http://localhost:8080/auth/sign-in
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin"
+}
+
+<> 2021-08-17T001032.200.json
+
+###
+
+POST http://localhost:8080/auth/sign-up
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin",
+  "role": "ADMIN"
+}
+
+<> 2021-08-17T001022.500.json
+
+###
+
+POST http://localhost:8080/auth/sign-up
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin",
+  "role": "ADMIN"
+}
+
+<> 2021-08-17T000958.200.json
+
+###
+
+GET http://localhost:8080/admin/seasons/9/courses
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYyOTIzMjYwMywicm9sZXMiOlsiQURNSU4iXX0.ab8VN7Tzc476CJhV_eeqRsO37qgzdcGdppQFQabFKQ8
+
+<> 2021-08-16T235913.200.json
+
+###
+
+POST http://localhost:8080/admin/course-seasons/active
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYyOTIzMjYwMywicm9sZXMiOlsiQURNSU4iXX0.ab8VN7Tzc476CJhV_eeqRsO37qgzdcGdppQFQabFKQ8
+
+<> 2021-08-16T235851.500.json
+
+###
+
+GET http://localhost:8080/users/current
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYyOTIzMjYwMywicm9sZXMiOlsiQURNSU4iXX0.ab8VN7Tzc476CJhV_eeqRsO37qgzdcGdppQFQabFKQ8
+
+<> 2021-08-16T235826.200.json
+
+###
+
+GET http://localhost:8080/users/current
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYyOTIzMjYwMywicm9sZXMiOlsiQURNSU4iXX0.ab8VN7Tzc476CJhV_eeqRsO37qgzdcGdppQFQabFKQ8
+
+###
+
+GET http://localhost:8080/users/current
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYyOTIzMjYwMywicm9sZXMiOlsiQURNSU4iXX0.ab8VN7Tzc476CJhV_eeqRsO37qgzdcGdppQFQabFKQ8
+
+###
+
+GET http://localhost:8080/users/current
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYyOTIzMjYwMywicm9sZXMiOlsiQURNSU4iXX0.ab8VN7Tzc476CJhV_eeqRsO37qgzdcGdppQFQabFKQ8
+
+###
+
+GET http://localhost:8080/users/current
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYyOTIzMjYwMywicm9sZXMiOlsiQURNSU4iXX0.ab8VN7Tzc476CJhV_eeqRsO37qgzdcGdppQFQabFKQ8
+
+<> 2021-08-16T233735.500.json
+
+###
+
+POST http://localhost:8080/auth/sign-up
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin",
+  "role": "ADMIN"
+}
+
+<> 2021-08-16T233643.200.json
+
+###
+
+POST http://localhost:8080/auth/sign-in
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin"
+}
+
+<> 2021-08-16T233627.200.json
+
+###
+
+POST http://localhost:8080/auth/sign-in
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin"
+}
+
+<> 2021-08-16T233539.500.json
+
+###
+
+POST http://localhost:8080/auth/sign-in
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin"
+}
+
+<> 2021-08-16T233435.500.json
+
+###
+
+POST http://localhost:8080/auth/sign-up
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin",
+  "role": "ADMIN"
+}
+
+<> 2021-08-16T233336.500.json
+
+###
+
+POST http://localhost:8080/auth/sign-in
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin"
+}
+
+<> 2021-08-16T233214.500.json
+
+###
+
+POST http://localhost:8080/auth/sign-up
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin",
+  "role": "ADMIN"
+}
+
+<> 2021-08-16T233151.500.json
+
+###
+
+POST http://localhost:8080/auth/sign-up
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin",
+  "role": "ADMIN"
+}
+
+<> 2021-08-16T233108.500.json
+
+###
+
+POST http://localhost:8080/auth/sign-in
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin"
+}
+
+<> 2021-08-16T233029.403.json
+
+###
+

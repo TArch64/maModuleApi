@@ -2,8 +2,7 @@ package ua.tarch64.maModuleApi.admin.courses.controllers.requests
 
 import javax.validation.constraints.NotNull
 
-data class ToggleActiveSeasonRequest(
-    @NotNull(message = "'seasonId' can't be blank")
-    val seasonId: Long
+data class AddCourseMemberRequest(
+    @NotNull(message = "'userId' can't be blank")
+    val userId: Long
 )
-

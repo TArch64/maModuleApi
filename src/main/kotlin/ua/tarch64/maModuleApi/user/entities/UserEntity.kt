@@ -9,10 +9,15 @@ data class UserEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     val id: Long,
+
     @Enumerated
+    @Column(nullable = false)
     val role: UserRoles,
-    @Column(unique = true)
+
+    @Column(unique = true, nullable = false)
     val username: String,
+
+    @Column(nullable = false)
     val password: String
 ) {
     data class CreateOptions(

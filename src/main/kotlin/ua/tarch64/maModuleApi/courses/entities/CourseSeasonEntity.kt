@@ -7,13 +7,15 @@ import javax.persistence.*
 data class CourseSeasonEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    val id: Long,
+    val id: Long = 0,
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     val value: Int,
 
+    @Column(nullable = false)
     val active: Boolean,
 
+    @Column(nullable = false)
     val year: Int,
 
     @OneToMany(
@@ -22,5 +24,5 @@ data class CourseSeasonEntity(
         cascade = [CascadeType.ALL],
         fetch = FetchType.LAZY
     )
-    val courses: List<CourseEntity>
+    val courses: List<CourseEntity> = emptyList()
 )

@@ -1,6 +1,8 @@
 package ua.tarch64.maModuleApi.courses.entities
 
+import org.hibernate.annotations.GenericGenerator
 import ua.tarch64.maModuleApi.courses.enums.CourseTypes
+import java.util.*
 import javax.persistence.*
 
 @Entity
@@ -12,8 +14,12 @@ import javax.persistence.*
 )
 data class CourseEntity(
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    val id: Long = 0,
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+        name = "UUID",
+        strategy = "org.hibernate.id.UUIDGenerator",
+    )
+    val id: UUID = UUID.randomUUID(),
 
     @Column(nullable = false)
     val name: String,
@@ -24,7 +30,7 @@ data class CourseEntity(
 
     @ManyToOne
     @JoinColumn(name = "season_id", nullable = false)
-    val season: CourseSeasonEntity,
+    val season: SeasonEntity,
 
     @OneToMany(
         targetEntity = CourseMentorEntity::class,

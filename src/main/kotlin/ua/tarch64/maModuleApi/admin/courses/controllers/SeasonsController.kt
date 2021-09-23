@@ -4,27 +4,28 @@ import org.springframework.web.bind.annotation.*
 import ua.tarch64.maModuleApi.admin.courses.CoursesFacade
 import ua.tarch64.maModuleApi.admin.courses.controllers.requests.AddSeasonRequest
 import ua.tarch64.maModuleApi.admin.courses.controllers.requests.ToggleActiveSeasonRequest
-import ua.tarch64.maModuleApi.admin.courses.controllers.responses.CourseSeasonResponse
+import ua.tarch64.maModuleApi.admin.courses.controllers.responses.SeasonResponse
 import ua.tarch64.maModuleApi.auth.annotations.RequireAdminRole
+import java.util.*
 import javax.validation.Valid
 
 @RestController
-@RequestMapping("/admin/course-seasons")
+@RequestMapping("/admin/seasons")
 @RequireAdminRole
-class CourseSeasonsController(private val coursesFacade: CoursesFacade) {
+class SeasonsController(private val coursesFacade: CoursesFacade) {
     @GetMapping
-    fun getSeasons(): List<CourseSeasonResponse> {
+    fun getSeasons(): List<SeasonResponse> {
         val seasons = coursesFacade.getSeasons()
-        return seasons.map(CourseSeasonResponse::fromEntity)
+        return seasons.map(SeasonResponse::fromEntity)
     }
 
     @PostMapping
-    fun addSeason(@Valid @RequestBody body: AddSeasonRequest): CourseSeasonResponse {
-        return CourseSeasonResponse.fromEntity(coursesFacade.addSeason(body.makeActive))
+    fun addSeason(@Valid @RequestBody body: AddSeasonRequest): SeasonResponse {
+        return SeasonResponse.fromEntity(coursesFacade.addSeason(body.makeActive))
     }
 
     @DeleteMapping("/{season_id}")
-    fun removeSeason(@PathVariable("season_id") seasonId: Long) {
+    fun removeSeason(@PathVariable("season_id") seasonId: UUID) {
         coursesFacade.removeSeason(seasonId)
     }
 

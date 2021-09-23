@@ -1,9 +1,10 @@
 package ua.tarch64.maModuleApi.admin.courses.controllers.responses
 
 import ua.tarch64.maModuleApi.user.entities.UserEntity
+import java.util.*
 
 data class CourseMemberResponse(
-    val id: Long,
+    val id: UUID,
     val username: String
 ) {
     companion object {

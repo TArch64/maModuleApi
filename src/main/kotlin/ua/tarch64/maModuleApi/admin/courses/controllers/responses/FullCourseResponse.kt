@@ -2,9 +2,10 @@ package ua.tarch64.maModuleApi.admin.courses.controllers.responses
 
 import ua.tarch64.maModuleApi.courses.entities.CourseEntity
 import ua.tarch64.maModuleApi.courses.enums.CourseTypes
+import java.util.*
 
 data class FullCourseResponse(
-    override val id: Long,
+    override val id: UUID,
     override val name: String,
     override val type: CourseTypes,
     val mentors: List<CourseMentorResponse>

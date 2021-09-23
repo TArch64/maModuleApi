@@ -1,13 +1,19 @@
 package ua.tarch64.maModuleApi.courses.entities
 
+import org.hibernate.annotations.GenericGenerator
+import java.util.*
 import javax.persistence.*
 
 @Entity
-@Table(name = "course_seasons")
-data class CourseSeasonEntity(
+@Table(name = "seasons")
+data class SeasonEntity(
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    val id: Long = 0,
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+        name = "UUID",
+        strategy = "org.hibernate.id.UUIDGenerator",
+    )
+    val id: UUID = UUID.randomUUID(),
 
     @Column(unique = true, nullable = false)
     val value: Int,

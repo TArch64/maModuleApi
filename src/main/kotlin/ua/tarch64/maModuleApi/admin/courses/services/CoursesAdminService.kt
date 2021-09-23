@@ -6,14 +6,15 @@ import ua.tarch64.maModuleApi.courses.entities.CourseEntity
 import ua.tarch64.maModuleApi.courses.entities.CourseMentorEntity
 import ua.tarch64.maModuleApi.courses.enums.CourseTypes
 import ua.tarch64.maModuleApi.courses.services.CoursesService
+import java.util.*
 
 @Service
 class CoursesAdminService(
     private val coursesService: CoursesService,
-    private val seasonsService: CourseSeasonsAdminService,
+    private val seasonsService: SeasonsAdminService,
     private val usersService: UsersAdminService
 ) {
-    fun addCourse(seasonId: Long, name: String, type: CourseTypes): CourseEntity {
+    fun addCourse(seasonId: UUID, name: String, type: CourseTypes): CourseEntity {
         val course = CourseEntity(
             name = name,
             type = type,
@@ -22,7 +23,7 @@ class CoursesAdminService(
         return coursesService.save(course)
     }
 
-    fun addMentor(courseId: Long, userId: Long) {
+    fun addMentor(courseId: UUID, userId: UUID) {
         val courseMentor = CourseMentorEntity(
             course = getCourseById(courseId),
             user = usersService.getUserById(userId)
@@ -30,7 +31,7 @@ class CoursesAdminService(
         coursesService.saveMentor(courseMentor)
     }
 
-    fun getCourseById(courseId: Long): CourseEntity {
+    fun getCourseById(courseId: UUID): CourseEntity {
         return coursesService.getById(courseId) ?: throw ValidationException("Course not found")
     }
 }

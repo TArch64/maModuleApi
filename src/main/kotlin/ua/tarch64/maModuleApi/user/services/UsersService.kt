@@ -6,6 +6,7 @@ import ua.tarch64.maModuleApi.common.errorHandling.exceptions.ValidationExceptio
 import ua.tarch64.maModuleApi.common.helpers.asKOptional
 import ua.tarch64.maModuleApi.user.entities.UserEntity
 import ua.tarch64.maModuleApi.user.entities.UserRepository
+import java.util.*
 
 @Service
 class UsersService(
@@ -22,14 +23,13 @@ class UsersService(
         }
 
         val user = UserEntity(
-            0,
-            options.role,
-            options.username,
-            passwordEncoder.encode(options.password)
+            role = options.role,
+            username = options.username,
+            password = passwordEncoder.encode(options.password)
         )
         return repository.save(user)
     }
-    fun getUserById(userId: Long): UserEntity? {
+    fun getUserById(userId: UUID): UserEntity? {
         return repository.findById(userId).asKOptional()
     }
 }

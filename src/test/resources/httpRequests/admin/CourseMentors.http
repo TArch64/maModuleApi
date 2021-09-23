@@ -1,8 +1,8 @@
 ###
 POST http://localhost:8080/admin/courses/65/mentors
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYzMTgxNDc3NSwicm9sZXMiOlsiQURNSU4iXX0.W752YZRWfVRrCbBAJS3VrnS3NWRUZ4ZlD48l1b0G2E8
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYzMjUwMjU3Miwicm9sZXMiOlsiQURNSU4iXX0.aXC1qgGTlIpB8PAAuN78inYUqeeep6clO_nn23V_GJE
 
 {
-  "userId": 67
+  "userId": 71
 }

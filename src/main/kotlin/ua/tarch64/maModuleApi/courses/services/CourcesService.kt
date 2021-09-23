@@ -7,13 +7,14 @@ import ua.tarch64.maModuleApi.courses.entities.CourseEntity
 import ua.tarch64.maModuleApi.courses.entities.CourseMentorEntity
 import ua.tarch64.maModuleApi.courses.repositories.CourseMentorsRepository
 import ua.tarch64.maModuleApi.courses.repositories.CoursesRepository
+import java.util.*
 
 @Service
 class CoursesService(
     private val coursesRepository: CoursesRepository,
     private val courseMentorsRepository: CourseMentorsRepository
 ) {
-    fun getById(courseId: Long): CourseEntity? {
+    fun getById(courseId: UUID): CourseEntity? {
         return coursesRepository.findById(courseId).asKOptional()
     }
 

@@ -1,50 +1,51 @@
 package ua.tarch64.maModuleApi.admin.courses
 
 import org.springframework.stereotype.Component
-import ua.tarch64.maModuleApi.admin.courses.services.CourseSeasonsAdminService
+import ua.tarch64.maModuleApi.admin.courses.services.SeasonsAdminService
 import ua.tarch64.maModuleApi.admin.courses.services.CoursesAdminService
 import ua.tarch64.maModuleApi.courses.entities.CourseEntity
-import ua.tarch64.maModuleApi.courses.entities.CourseSeasonEntity
+import ua.tarch64.maModuleApi.courses.entities.SeasonEntity
 import ua.tarch64.maModuleApi.courses.enums.CourseTypes
+import java.util.*
 
 @Component
 class CoursesFacade(
-    private val seasonsService: CourseSeasonsAdminService,
+    private val seasonsService: SeasonsAdminService,
     private val coursesService: CoursesAdminService
 ) {
-    fun getSeasons(): List<CourseSeasonEntity> {
+    fun getSeasons(): List<SeasonEntity> {
         return seasonsService.getSeasons()
     }
 
-    fun addSeason(makeActive: Boolean): CourseSeasonEntity {
+    fun addSeason(makeActive: Boolean): SeasonEntity {
         return seasonsService.addSeason(makeActive)
     }
 
-    fun removeSeason(seasonId: Long) {
+    fun removeSeason(seasonId: UUID) {
         seasonsService.removeSeason(seasonId)
     }
 
-    fun activateSeason(seasonId: Long) {
+    fun activateSeason(seasonId: UUID) {
         seasonsService.activateSeason(seasonId)
     }
 
-    fun deactivateSeason(seasonId: Long) {
+    fun deactivateSeason(seasonId: UUID) {
         seasonsService.deactivateSeason(seasonId)
     }
 
-    fun getCourses(seasonId: Long): List<CourseEntity> {
+    fun getCourses(seasonId: UUID): List<CourseEntity> {
         return seasonsService.getSeasonById(seasonId).courses
     }
 
-    fun addCourse(seasonId: Long, name: String, type: CourseTypes): CourseEntity {
+    fun addCourse(seasonId: UUID, name: String, type: CourseTypes): CourseEntity {
         return coursesService.addCourse(seasonId, name, type)
     }
 
-    fun getCourseById(courseId: Long): CourseEntity? {
+    fun getCourseById(courseId: UUID): CourseEntity? {
         return coursesService.getCourseById(courseId)
     }
 
-    fun addMentor(courseId: Long, userId: Long) {
+    fun addMentor(courseId: UUID, userId: UUID) {
         coursesService.addMentor(courseId, userId)
     }
 }

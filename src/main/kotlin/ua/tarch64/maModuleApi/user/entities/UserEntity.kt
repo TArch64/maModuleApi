@@ -1,14 +1,20 @@
 package ua.tarch64.maModuleApi.user.entities
 
+import org.hibernate.annotations.GenericGenerator
 import ua.tarch64.maModuleApi.user.enums.UserRoles
+import java.util.*
 import javax.persistence.*
 
 @Entity
 @Table(name = "users")
 data class UserEntity(
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    val id: Long,
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+        name = "UUID",
+        strategy = "org.hibernate.id.UUIDGenerator",
+    )
+    val id: UUID = UUID.randomUUID(),
 
     @Enumerated
     @Column(nullable = false)

@@ -1,3 +1,55 @@
+POST http://localhost:8080/auth/sign-up
+Content-Type: application/json
+
+{
+  "username": "mentor",
+  "password": "mentor",
+  "role": "MENTOR"
+}
+
+<> 2021-09-23T195535.422.json
+
+###
+
+POST http://localhost:8080/auth/sign-up
+Content-Type: application/json
+
+{
+  "username": "mentor",
+  "password": "mentor",
+  "role": "MENTOR"
+}
+
+<> 2021-09-23T195442.422.json
+
+###
+
+POST http://localhost:8080/auth/sign-up
+Content-Type: application/json
+
+{
+  "username": "mentor",
+  "password": "mentor",
+  "role": "MENTOR"
+}
+
+<> 2021-09-23T195411.500.json
+
+###
+
+POST http://localhost:8080/auth/sign-up
+Content-Type: application/json
+
+{
+  "username": "mentor",
+  "password": "mentor",
+  "role": "MENTOR"
+}
+
+<> 2021-09-23T194930.500.json
+
+###
+
 GET http://localhost:8080/admin/courses/65
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYzMTgxNTc1MCwicm9sZXMiOlsiQURNSU4iXX0.iYJ06m_QgKby608K04R93XGa0jaMdQvpGIqlqyLIC1U
@@ -426,56 +478,6 @@ Content-Type: application/json
 }
 
 <> 2021-08-16T233336.500.json
-
-###
-
-POST http://localhost:8080/auth/sign-in
-Content-Type: application/json
-
-{
-  "username": "admin",
-  "password": "admin"
-}
-
-<> 2021-08-16T233214.500.json
-
-###
-
-POST http://localhost:8080/auth/sign-up
-Content-Type: application/json
-
-{
-  "username": "admin",
-  "password": "admin",
-  "role": "ADMIN"
-}
-
-<> 2021-08-16T233151.500.json
-
-###
-
-POST http://localhost:8080/auth/sign-up
-Content-Type: application/json
-
-{
-  "username": "admin",
-  "password": "admin",
-  "role": "ADMIN"
-}
-
-<> 2021-08-16T233108.500.json
-
-###
-
-POST http://localhost:8080/auth/sign-in
-Content-Type: application/json
-
-{
-  "username": "admin",
-  "password": "admin"
-}
-
-<> 2021-08-16T233029.403.json
 
 ###
 

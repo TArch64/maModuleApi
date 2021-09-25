@@ -1,4 +1,4 @@
-package ua.tarch64.maModuleApi.auth.config
+package ua.tarch64.maModuleApi.common.beans
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -6,7 +6,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 
 @Configuration
-class PasswordEncoderProvider {
+class PasswordEncoderBean {
     @Bean
     fun passwordEncoder(): PasswordEncoder {
         return BCryptPasswordEncoder()

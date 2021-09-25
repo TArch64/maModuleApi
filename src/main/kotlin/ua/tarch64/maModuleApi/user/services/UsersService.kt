@@ -5,13 +5,16 @@ import org.springframework.stereotype.Service
 import ua.tarch64.maModuleApi.common.errorHandling.exceptions.ValidationException
 import ua.tarch64.maModuleApi.common.helpers.asKOptional
 import ua.tarch64.maModuleApi.user.entities.UserEntity
-import ua.tarch64.maModuleApi.user.entities.UserRepository
+import ua.tarch64.maModuleApi.user.repositories.UserRepository
+import ua.tarch64.maModuleApi.user.repositories.filters.SearchFilter
 import java.util.*
+import javax.persistence.EntityManager
 
 @Service
 class UsersService(
     private val repository: UserRepository,
-    private val passwordEncoder: PasswordEncoder
+    private val passwordEncoder: PasswordEncoder,
+    private val entityManager: EntityManager
 ) {
     fun findUserByUsername(username: String): UserEntity? {
         return repository.findUserByUsername(username)
@@ -29,7 +32,12 @@ class UsersService(
         )
         return repository.save(user)
     }
+
     fun getUserById(userId: UUID): UserEntity? {
         return repository.findById(userId).asKOptional()
+    }
+
+    fun searchUsers(filter: SearchFilter): List<UserEntity> {
+        return filter.createQuery(entityManager).resultList
     }
 }

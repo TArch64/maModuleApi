@@ -8,12 +8,14 @@ import javax.persistence.TypedQuery
 data class SearchFilter(
     val role: UserRoles,
     val username: String,
+    val email: String,
     val limit: Int
 ) {
     fun createQuery(entityManager: EntityManager): TypedQuery<UserEntity> {
         return entityManager.createQuery(prepareQueryString(), UserEntity::class.java).apply {
             setParameter("role", role)
-            setParameter("username", prepareUsername())
+            setParameter("username", matchIncludes(username))
+            setParameter("email", matchIncludes(email))
             maxResults = limit
         }
     }
@@ -21,11 +23,14 @@ data class SearchFilter(
     private fun prepareQueryString(): String {
         return """
             SELECT u FROM UserEntity u
-            WHERE u.role = :role AND LOWER(u.username) like :username
+            WHERE u.role = :role AND (
+                LOWER(u.username) like :username
+                OR LOWER(u.email) like :email
+            )
         """.trimIndent()
     }
 
-    private fun prepareUsername(): String {
-        return "%${username.lowercase()}%"
+    private fun matchIncludes(value: String): String {
+        return "%${value.lowercase()}%"
     }
 }

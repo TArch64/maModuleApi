@@ -11,13 +11,13 @@ import ua.tarch64.maModuleApi.auth.controllers.responses.AuthResponse
 class AuthController(private val authFacade: AuthFacade) {
     @PostMapping("/sign-in")
     fun signIn(@RequestBody body: SignInRequest): AuthResponse {
-        val token = authFacade.signIn(body.username, body.password)
+        val token = authFacade.signIn(body.email, body.password)
         return AuthResponse(token)
     }
 
     @PostMapping("/sign-up")
     fun signUp(@RequestBody body: SignUpRequest): AuthResponse {
-        val token = authFacade.signUp(body.username, body.password, body.role)
+        val token = authFacade.signUp(body.email, body.username, body.password, body.role)
         return AuthResponse(token)
     }
 }

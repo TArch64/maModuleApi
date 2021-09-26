@@ -14,9 +14,9 @@ import ua.tarch64.maModuleApi.user.services.UsersService
 class UserDetailsServiceImpl(
     private val usersService: UsersService
     ): UserDetailsService {
-    override fun loadUserByUsername(username: String): UserDetails {
-        val user = usersService.findUserByUsername(username) ?: throw UsernameNotFoundException(username)
-        return User(user.username, user.password, buildGrantedAuthorities(user))
+    override fun loadUserByUsername(email: String): UserDetails {
+        val user = usersService.findUserByEmail(email) ?: throw UsernameNotFoundException(email)
+        return User(user.email, user.password, buildGrantedAuthorities(user))
     }
 
     private fun buildGrantedAuthorities(user: UserEntity): List<GrantedAuthority> {

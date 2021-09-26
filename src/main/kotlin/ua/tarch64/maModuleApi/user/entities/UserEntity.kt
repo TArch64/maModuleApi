@@ -20,14 +20,18 @@ data class UserEntity(
     @Column(nullable = false)
     val role: UserRoles,
 
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false)
     val username: String,
+
+    @Column(unique = true, nullable = false)
+    val email: String,
 
     @Column(nullable = false)
     val password: String
 ) {
     data class CreateOptions(
         val role: UserRoles,
+        val email: String,
         val username: String,
         val password: String
     )

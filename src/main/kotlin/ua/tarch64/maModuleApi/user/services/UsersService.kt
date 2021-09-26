@@ -16,21 +16,20 @@ class UsersService(
     private val passwordEncoder: PasswordEncoder,
     private val entityManager: EntityManager
 ) {
-    fun findUserByUsername(username: String): UserEntity? {
-        return repository.findUserByUsername(username)
+    fun findUserByEmail(email: String): UserEntity? {
+        return repository.findUserByEmail(email)
     }
 
     fun createUser(options: UserEntity.CreateOptions): UserEntity {
-        if (findUserByUsername(options.username) != null) {
-            throw ValidationException("Username already exists")
+        if (findUserByEmail(options.email) != null) {
+            throw ValidationException("User with this email already exists")
         }
-
-        val user = UserEntity(
+        return repository.save(UserEntity(
             role = options.role,
             username = options.username,
+            email = options.email,
             password = passwordEncoder.encode(options.password)
-        )
-        return repository.save(user)
+        ))
     }
 
     fun getUserById(userId: UUID): UserEntity? {

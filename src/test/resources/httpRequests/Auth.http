@@ -12,7 +12,7 @@ POST http://localhost:8080/auth/sign-in
 Content-Type: application/json
 
 {
-  "username": "admin",
+  "email": "admin@mail.com",
   "password": "admin"
 }
 

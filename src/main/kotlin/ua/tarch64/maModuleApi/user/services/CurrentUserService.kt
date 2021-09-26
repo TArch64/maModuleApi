@@ -12,6 +12,6 @@ class CurrentUserService(
     fun fetchCurrentUser(): UserEntity {
         val authentication = SecurityContextHolder.getContext().authentication
         val user = authentication.principal as User
-        return usersService.findUserByUsername(user.username)!!
+        return usersService.findUserByEmail(user.username)!!
     }
 }

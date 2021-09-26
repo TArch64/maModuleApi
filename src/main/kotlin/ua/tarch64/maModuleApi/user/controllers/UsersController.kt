@@ -17,9 +17,9 @@ class UsersController(private val usersFacade: UsersFacade) {
 
     @GetMapping("/mentors")
     fun searchMentors(
-        @RequestParam("username") username: String,
+        @RequestParam("query") query: String,
         @RequestParam("limit") limit: Int
     ): List<UserResponse> {
-        return usersFacade.searchMentors(username, limit).map(UserResponse::fromEntity)
+        return usersFacade.searchMentors(query, limit).map(UserResponse::fromEntity)
     }
 }

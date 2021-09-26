@@ -18,18 +18,18 @@ class AuthFacade(
     private val authManager: AuthenticationManager,
     private val usersService: UsersService
 ) {
-    fun signIn(username: String, password: String): String {
+    fun signIn(email: String, password: String): String {
         try {
-            val auth = authManager.authenticate(UsernamePasswordAuthenticationToken(username, password, emptyList()))
+            val auth = authManager.authenticate(UsernamePasswordAuthenticationToken(email, password, emptyList()))
             SecurityContextHolder.getContext().authentication = auth
             return authTokenService.generateToken(auth.principal as User)
         } catch (exception: BadCredentialsException) {
-            throw ValidationException("Username or password is not correct")
+            throw ValidationException("Email or password is not correct")
         }
     }
 
-    fun signUp(username: String, password: String, role: UserRoles): String {
-        usersService.createUser(UserEntity.CreateOptions(role, username, password))
-        return signIn(username, password)
+    fun signUp(email: String, username: String, password: String, role: UserRoles): String {
+        usersService.createUser(UserEntity.CreateOptions(role, email, username, password))
+        return signIn(email, password)
     }
 }

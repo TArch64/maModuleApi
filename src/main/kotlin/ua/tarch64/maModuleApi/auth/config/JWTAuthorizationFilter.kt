@@ -32,7 +32,7 @@ class JWTAuthorizationFilter(
     }
 
     private fun getAuthentication(token: String): Authentication? {
-        val username: String
+        val email: String
         val roles: List<GrantedAuthority>
         try {
             val claims: Claims = Jwts.parserBuilder()
@@ -40,13 +40,13 @@ class JWTAuthorizationFilter(
                 .build()
                 .parseClaimsJws(token)
                 .body
-            username = claims.subject
+            email = claims.subject
             roles = claims.get("roles", List::class.java).map { SimpleGrantedAuthority(it as String) }
         } catch (e: JwtException) {
             return null
         }
-        if (username == null) return null
-        return createAuthToken(username, roles)
+        if (email == null) return null
+        return createAuthToken(email, roles)
     }
 
     private fun getToken(req: HttpServletRequest): String? {
@@ -55,8 +55,8 @@ class JWTAuthorizationFilter(
         return token.replace("Bearer ", "")
     }
 
-    private fun createAuthToken(username: String, roles: List<GrantedAuthority>): Authentication {
-        val user = User(username, "secure", roles)
+    private fun createAuthToken(email: String, roles: List<GrantedAuthority>): Authentication {
+        val user = User(email, "secure", roles)
         return UsernamePasswordAuthenticationToken(user, null, roles)
     }
 }

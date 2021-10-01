@@ -15,13 +15,4 @@ class UsersFacade(
     fun fetchCurrentUser(): UserEntity {
         return currentUserService.fetchCurrentUser()
     }
-
-    fun searchMentors(query: String, limit: Int): List<UserEntity> {
-        return usersService.searchUsers(SearchFilter(
-            role = UserRoles.MENTOR,
-            username = query,
-            email = query,
-            limit = limit
-        ))
-    }
 }

@@ -1,6 +1,7 @@
 package ua.tarch64.maModuleApi.admin.courses.services
 
 import org.springframework.stereotype.Service
+import ua.tarch64.maModuleApi.admin.users.services.AdminUsersService
 import ua.tarch64.maModuleApi.common.errorHandling.exceptions.ValidationException
 import ua.tarch64.maModuleApi.courses.entities.CourseEntity
 import ua.tarch64.maModuleApi.courses.entities.CourseMentorEntity
@@ -12,7 +13,7 @@ import java.util.*
 class CoursesAdminService(
     private val coursesService: CoursesService,
     private val seasonsService: SeasonsAdminService,
-    private val usersService: UsersAdminService
+    private val usersService: AdminUsersService
 ) {
     fun addCourse(seasonId: UUID, name: String, type: CourseTypes): CourseEntity {
         val course = CourseEntity(

@@ -9,5 +9,4 @@ import java.util.*
 @Repository
 interface UserRepository: JpaRepository<UserEntity, UUID> {
     fun findUserByEmail(email: String): UserEntity?
-    fun findAllByRole(role: UserRoles): List<UserEntity>
 }

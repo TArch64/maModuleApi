@@ -1,4 +1,4 @@
-GET http://localhost:8080/users/mentors?username=me&limit=2
+GET http://localhost:8080/users/mentors?query=com&limit=2
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYzMjY4NDE2Miwicm9sZXMiOlsiQURNSU4iXX0.BTZ8HF_ehY0YFRKlc44WkiSDC2mrke77-obrl7RQ-MY
 

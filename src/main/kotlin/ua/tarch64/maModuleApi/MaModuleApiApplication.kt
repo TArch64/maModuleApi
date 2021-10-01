@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class MaModuleApiApplication
 
 fun main(args: Array<String>) {
-	runApplication<MaModuleApiApplication>(*args)
+    runApplication<MaModuleApiApplication>(*args)
 }

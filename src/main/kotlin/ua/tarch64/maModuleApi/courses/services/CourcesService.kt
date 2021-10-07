@@ -1,10 +1,11 @@
 package ua.tarch64.maModuleApi.courses.services
 
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import ua.tarch64.maModuleApi.common.helpers.asKOptional
 import ua.tarch64.maModuleApi.courses.entities.CourseEntity
 import ua.tarch64.maModuleApi.courses.entities.CourseMentorEntity
+import ua.tarch64.maModuleApi.courses.enums.CourseMentorRoles
 import ua.tarch64.maModuleApi.courses.repositories.CourseMentorsRepository
 import ua.tarch64.maModuleApi.courses.repositories.CoursesRepository
 import java.util.*
@@ -15,12 +16,20 @@ class CoursesService(
     private val courseMentorsRepository: CourseMentorsRepository
 ) {
     fun getById(courseId: UUID): CourseEntity? {
-        return coursesRepository.findById(courseId).asKOptional()
+        return coursesRepository.findByIdOrNull(courseId)
     }
 
     @Transactional
     fun save(course: CourseEntity): CourseEntity {
         return coursesRepository.save(course)
+    }
+
+    fun getCourseLeadMentor(course: CourseEntity): CourseMentorEntity? {
+        return courseMentorsRepository.findByCourseAndRole(course, CourseMentorRoles.LEAD)
+    }
+
+    fun getMentorById(mentorId: UUID): CourseMentorEntity? {
+        return courseMentorsRepository.findByIdOrNull(mentorId)
     }
 
     @Transactional

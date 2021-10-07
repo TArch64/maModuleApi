@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
 
 data class AddCourseMembersRequest(
-    @NotNull(message = "'mails' can't be blank")
+    @NotNull(message = "'emails' can't be blank")
     @Email(message = "Email is not correct", regexp = Constants.Regexps.EMAIL)
     @Size(min = 1, message = "Add at list one email")
     val emails: List<String>

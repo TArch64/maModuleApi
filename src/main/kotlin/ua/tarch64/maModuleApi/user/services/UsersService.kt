@@ -1,9 +1,9 @@
 package ua.tarch64.maModuleApi.user.services
 
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import ua.tarch64.maModuleApi.common.errorHandling.exceptions.ValidationException
-import ua.tarch64.maModuleApi.common.helpers.asKOptional
 import ua.tarch64.maModuleApi.user.entities.UserEntity
 import ua.tarch64.maModuleApi.user.enums.UserRoles
 import ua.tarch64.maModuleApi.user.repositories.UserRepository
@@ -34,7 +34,7 @@ class UsersService(
     }
 
     fun getUserById(userId: UUID): UserEntity? {
-        return repository.findById(userId).asKOptional()
+        return repository.findByIdOrNull(userId)
     }
 
     fun searchUsers(filter: SearchFilter): List<UserEntity> {

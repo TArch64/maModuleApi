@@ -5,6 +5,7 @@ import ua.tarch64.maModuleApi.admin.users.services.AdminUsersService
 import ua.tarch64.maModuleApi.common.errorHandling.exceptions.ValidationException
 import ua.tarch64.maModuleApi.courses.entities.CourseEntity
 import ua.tarch64.maModuleApi.courses.entities.CourseMentorEntity
+import ua.tarch64.maModuleApi.courses.enums.CourseMentorRoles
 import ua.tarch64.maModuleApi.courses.enums.CourseTypes
 import ua.tarch64.maModuleApi.courses.services.CoursesService
 import ua.tarch64.maModuleApi.user.enums.UserRoles
@@ -42,5 +43,22 @@ class CoursesAdminService(
         val users = usersService.getByEmailsInRole(UserRoles.MENTOR, emails)
         val mentors = users.map { CourseMentorEntity(course = course, user = it) }
         return coursesService.saveMentors(mentors)
+    }
+
+    fun changeLeadMentor(courseId: UUID, mentorId: UUID) {
+        val course = getCourseById(courseId)
+        val mentor = getMentorById(mentorId)
+        val savingMentors = mutableListOf<CourseMentorEntity>()
+
+        coursesService.getCourseLeadMentor(course)?.run {
+            savingMentors.add(copy(role = CourseMentorRoles.MENTOR))
+        }
+
+        savingMentors.add(mentor.copy(role = CourseMentorRoles.LEAD))
+        coursesService.saveMentors(savingMentors)
+    }
+
+    fun getMentorById(mentorId: UUID): CourseMentorEntity {
+        return coursesService.getMentorById(mentorId) ?: throw ValidationException("Mentor not found")
     }
 }

@@ -1,6 +1,7 @@
 package ua.tarch64.maModuleApi.courses.services
 
 import org.springframework.data.domain.Sort
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import ua.tarch64.maModuleApi.common.helpers.asKOptional
@@ -23,7 +24,7 @@ class SeasonsService(private val seasonsRepository: SeasonsRepository) {
     }
 
     fun getById(id: UUID): SeasonEntity? {
-        return seasonsRepository.findById(id).asKOptional()
+        return seasonsRepository.findByIdOrNull(id)
     }
 
     fun remove(season: SeasonEntity) {

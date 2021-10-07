@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.*
 import ua.tarch64.maModuleApi.admin.courses.CoursesFacade
 import ua.tarch64.maModuleApi.admin.courses.controllers.requests.AddCourseMembersRequest
 import ua.tarch64.maModuleApi.admin.courses.controllers.requests.AddCourseRequest
+import ua.tarch64.maModuleApi.admin.courses.controllers.requests.ChangeLeadMentorRequest
 import ua.tarch64.maModuleApi.admin.courses.controllers.responses.CourseMentorResponse
 import ua.tarch64.maModuleApi.admin.courses.controllers.responses.CourseResponse
 import ua.tarch64.maModuleApi.admin.courses.controllers.responses.FullCourseResponse
@@ -40,5 +41,13 @@ class CoursesController(private val coursesFacade: CoursesFacade) {
         @Valid @RequestBody body: AddCourseMembersRequest
     ): List<CourseMentorResponse> {
         return coursesFacade.addMentors(courseId, body.emails).map(CourseMentorResponse::fromEntity)
+    }
+
+    @PostMapping("/courses/{course_id}/lead-mentor")
+    fun changeLeadMentor(
+        @PathVariable("course_id") courseId: UUID,
+        @Valid @RequestBody body: ChangeLeadMentorRequest
+    ) {
+        coursesFacade.changeLeadMentor(courseId, body.mentorId)
     }
 }

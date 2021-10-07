@@ -49,4 +49,8 @@ class CoursesFacade(
     fun addMentors(courseId: UUID, emails: List<String>): List<CourseMentorEntity> {
         return coursesService.addMentors(courseId, emails)
     }
+
+    fun changeLeadMentor(courseId: UUID, mentorId: UUID) {
+        return coursesService.changeLeadMentor(courseId, mentorId)
+    }
 }

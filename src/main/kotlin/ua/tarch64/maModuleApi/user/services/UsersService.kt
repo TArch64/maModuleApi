@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service
 import ua.tarch64.maModuleApi.common.errorHandling.exceptions.ValidationException
 import ua.tarch64.maModuleApi.common.helpers.asKOptional
 import ua.tarch64.maModuleApi.user.entities.UserEntity
+import ua.tarch64.maModuleApi.user.enums.UserRoles
 import ua.tarch64.maModuleApi.user.repositories.UserRepository
 import ua.tarch64.maModuleApi.user.repositories.filters.SearchFilter
 import java.util.*
@@ -38,5 +39,9 @@ class UsersService(
 
     fun searchUsers(filter: SearchFilter): List<UserEntity> {
         return filter.createQuery(entityManager).resultList
+    }
+
+    fun getByEmailsInRole(role: UserRoles, emails: List<String>): List<UserEntity> {
+        return repository.findAllByRoleAndEmails(role, emails)
     }
 }

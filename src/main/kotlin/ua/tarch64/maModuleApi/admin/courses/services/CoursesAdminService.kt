@@ -7,6 +7,7 @@ import ua.tarch64.maModuleApi.courses.entities.CourseEntity
 import ua.tarch64.maModuleApi.courses.entities.CourseMentorEntity
 import ua.tarch64.maModuleApi.courses.enums.CourseTypes
 import ua.tarch64.maModuleApi.courses.services.CoursesService
+import ua.tarch64.maModuleApi.user.enums.UserRoles
 import java.util.*
 
 @Service
@@ -34,5 +35,12 @@ class CoursesAdminService(
 
     fun getCourseById(courseId: UUID): CourseEntity {
         return coursesService.getById(courseId) ?: throw ValidationException("Course not found")
+    }
+
+    fun addMentors(courseId: UUID, emails: List<String>): List<CourseMentorEntity> {
+        val course = getCourseById(courseId)
+        val users = usersService.getByEmailsInRole(UserRoles.MENTOR, emails)
+        val mentors = users.map { CourseMentorEntity(course = course, user = it) }
+        return coursesService.saveMentors(mentors)
     }
 }

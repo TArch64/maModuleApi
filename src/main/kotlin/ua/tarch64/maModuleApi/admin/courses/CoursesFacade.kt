@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component
 import ua.tarch64.maModuleApi.admin.courses.services.SeasonsAdminService
 import ua.tarch64.maModuleApi.admin.courses.services.CoursesAdminService
 import ua.tarch64.maModuleApi.courses.entities.CourseEntity
+import ua.tarch64.maModuleApi.courses.entities.CourseMentorEntity
 import ua.tarch64.maModuleApi.courses.entities.SeasonEntity
 import ua.tarch64.maModuleApi.courses.enums.CourseTypes
 import java.util.*
@@ -45,7 +46,7 @@ class CoursesFacade(
         return coursesService.getCourseById(courseId)
     }
 
-    fun addMentor(courseId: UUID, userId: UUID) {
-        coursesService.addMentor(courseId, userId)
+    fun addMentors(courseId: UUID, emails: List<String>): List<CourseMentorEntity> {
+        return coursesService.addMentors(courseId, emails)
     }
 }

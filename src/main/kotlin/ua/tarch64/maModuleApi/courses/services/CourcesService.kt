@@ -27,4 +27,9 @@ class CoursesService(
     fun saveMentor(courseMentor: CourseMentorEntity): CourseMentorEntity {
         return courseMentorsRepository.save(courseMentor)
     }
+
+    @Transactional
+    fun saveMentors(courseMentors: List<CourseMentorEntity>): List<CourseMentorEntity> {
+        return courseMentorsRepository.saveAll(courseMentors)
+    }
 }

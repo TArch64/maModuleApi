@@ -18,4 +18,8 @@ class AdminUsersService(private val usersService: UsersService) {
         val filter = SearchFilter(UserRoles.MENTOR, query, query, limit)
         return usersService.searchUsers(filter)
     }
+
+    fun getByEmailsInRole(role: UserRoles, emails: List<String>): List<UserEntity> {
+        return usersService.getByEmailsInRole(role, emails.map { it.lowercase() })
+    }
 }

@@ -8,14 +8,17 @@ import ua.tarch64.maModuleApi.courses.entities.CourseMentorEntity
 import ua.tarch64.maModuleApi.courses.enums.CourseMentorRoles
 import ua.tarch64.maModuleApi.courses.enums.CourseTypes
 import ua.tarch64.maModuleApi.courses.services.CoursesService
+import ua.tarch64.maModuleApi.user.entities.UserEntity
 import ua.tarch64.maModuleApi.user.enums.UserRoles
+import ua.tarch64.maModuleApi.user.services.UserInvitationsService
 import java.util.*
 
 @Service
 class CoursesAdminService(
     private val coursesService: CoursesService,
     private val seasonsService: SeasonsAdminService,
-    private val usersService: AdminUsersService
+    private val usersService: AdminUsersService,
+    private val userInvitationsService: UserInvitationsService
 ) {
     fun addCourse(seasonId: UUID, name: String, type: CourseTypes): CourseEntity {
         val course = CourseEntity(
@@ -40,9 +43,20 @@ class CoursesAdminService(
 
     fun addMentors(courseId: UUID, emails: List<String>): List<CourseMentorEntity> {
         val course = getCourseById(courseId)
-        val users = usersService.getByEmailsInRole(UserRoles.MENTOR, emails)
-        val mentors = users.map { CourseMentorEntity(course = course, user = it) }
+        val existingUsers = usersService.getByEmailsInRole(UserRoles.MENTOR, emails)
+
+        if (emails.size > existingUsers.size) {
+            val newUserEmails = fetchNewUserEmails(existingUsers, emails)
+            userInvitationsService.inviteMentors(newUserEmails, courseId)
+        }
+
+        val mentors = existingUsers.map { CourseMentorEntity(course = course, user = it) }
         return coursesService.saveMentors(mentors)
+    }
+
+    private fun fetchNewUserEmails(existingUsers: List<UserEntity>, emails: List<String>): List<String> {
+        val existingUserEmails = existingUsers.map { it.email }
+        return emails.filterNot { existingUserEmails.contains(it) }
     }
 
     fun changeLeadMentor(courseId: UUID, mentorId: UUID) {

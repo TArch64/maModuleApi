@@ -1,6 +1,7 @@
 package ua.tarch64.maModuleApi.user.entities
 
 import org.hibernate.annotations.GenericGenerator
+import ua.tarch64.maModuleApi.courses.entities.CourseEntity
 import ua.tarch64.maModuleApi.user.enums.UserRoles
 import java.util.*
 import javax.persistence.*
@@ -23,6 +24,7 @@ data class UserInvitationEntity(
     @Column(unique = true, nullable = false)
     val email: String,
 
-    @Column(nullable = false)
-    val targetId: UUID
+    @ManyToOne
+    @JoinColumn(name = "course_id", nullable = false)
+    val course: CourseEntity,
 )

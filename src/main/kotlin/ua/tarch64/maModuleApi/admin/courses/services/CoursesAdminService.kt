@@ -29,14 +29,6 @@ class CoursesAdminService(
         return coursesService.save(course)
     }
 
-    fun addMentor(courseId: UUID, userId: UUID) {
-        val courseMentor = CourseMentorEntity(
-            course = getCourseById(courseId),
-            user = usersService.getUserById(userId)
-        )
-        coursesService.saveMentor(courseMentor)
-    }
-
     fun getCourseById(courseId: UUID): CourseEntity {
         return coursesService.getById(courseId) ?: throw ValidationException("Course not found")
     }
@@ -47,7 +39,7 @@ class CoursesAdminService(
 
         if (emails.size > existingUsers.size) {
             val newUserEmails = fetchNewUserEmails(existingUsers, emails)
-            userInvitationsService.inviteMentors(newUserEmails, courseId)
+            userInvitationsService.inviteMentors(newUserEmails, course)
         }
 
         val mentors = existingUsers.map { CourseMentorEntity(course = course, user = it) }

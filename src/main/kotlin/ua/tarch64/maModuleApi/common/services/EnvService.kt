@@ -12,6 +12,8 @@ class EnvService {
     val authTokenSecretKey: Key = createSecretKey()
     val authTokenExpiration: Int = System.getenv("APP_TOKEN_EXPIRATION").toInt()
 
+    val frontendUrl: String = System.getenv("FRONTEND_URL")
+
     private fun createSecretKey(): SecretKey {
         val keyBytes = authTokenSecret.toByteArray(StandardCharsets.UTF_8)
         return Keys.hmacShaKeyFor(keyBytes)

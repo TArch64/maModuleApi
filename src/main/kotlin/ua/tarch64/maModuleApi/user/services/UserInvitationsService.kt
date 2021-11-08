@@ -4,7 +4,8 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import ua.tarch64.maModuleApi.common.services.UrlService
 import ua.tarch64.maModuleApi.courses.entities.CourseEntity
-import ua.tarch64.maModuleApi.mailer.entities.EmailDraftBatch
+import ua.tarch64.maModuleApi.mailer.entities.EmailDraft
+import ua.tarch64.maModuleApi.mailer.entities.EmailTemplate
 import ua.tarch64.maModuleApi.mailer.services.EmailSender
 import ua.tarch64.maModuleApi.user.entities.UserInvitationEntity
 import ua.tarch64.maModuleApi.user.enums.UserRoles
@@ -28,18 +29,22 @@ class UserInvitationsService(
     }
 
     private fun sendInvites(invitations: List<UserInvitationEntity>) {
-        val draftItems = invitations.map {
-            EmailDraftBatch.Item(it.email, hashMapOf(
-                "courseName" to it.course.name,
-                "recipientRole" to it.role.title,
-                "joinPath" to urlService.buildJoinUrl(it.id)
-            ))
+        val template = EmailTemplate(
+            name = "invite-user",
+            images = listOf("ma-hero-image.jpg", "ma-logo-black.jpg")
+        )
+        val emails = invitations.map {
+            EmailDraft(
+                to = it.email,
+                subject = "Welcome to MA Community!",
+                template = template.usePayload(
+                    "courseName" to it.course.name,
+                    "recipientRole" to it.role.title,
+                    "joinPath" to urlService.buildJoinUrl(it.id)
+                )
+            )
         }
-        emailSender.send(EmailDraftBatch(
-            subject = "Welcome to MA Module!",
-            template = "invite-user",
-            items = draftItems
-        ))
+        emailSender.send(emails)
     }
 
     @Transactional

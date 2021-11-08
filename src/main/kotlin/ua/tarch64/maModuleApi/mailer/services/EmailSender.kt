@@ -1,11 +1,11 @@
 package ua.tarch64.maModuleApi.mailer.services
 
+import org.springframework.core.io.ClassPathResource
 import org.springframework.mail.javamail.JavaMailSender
 import org.springframework.mail.javamail.MimeMessageHelper
 import org.springframework.stereotype.Service
 import ua.tarch64.maModuleApi.common.Constants
 import ua.tarch64.maModuleApi.mailer.entities.EmailDraft
-import ua.tarch64.maModuleApi.mailer.entities.EmailDraftBatch
 import javax.mail.internet.MimeMessage
 
 @Service
@@ -17,20 +17,29 @@ class EmailSender(
         sender.send(createMessage(draft))
     }
 
-    fun send(batch: EmailDraftBatch) {
-        val messages = batch.asList().map(this::createMessage)
-        sender.send(*messages.toTypedArray())
+    fun send(drafts: List<EmailDraft>) {
+        sender.send(*drafts.map(this::createMessage).toTypedArray())
     }
 
-    private fun createMessage(template: EmailDraft): MimeMessage {
-        val body = renderer.render(template.template, template.payload)
+    private fun createMessage(draft: EmailDraft): MimeMessage {
+        val body = renderer.render(draft.template)
 
         return sender.createMimeMessage().apply {
-            val helper = MimeMessageHelper(this, "utf-8")
+            val isMultipart = draft.template.images.isNotEmpty()
+            val helper = MimeMessageHelper(this, isMultipart,"utf-8")
+
             helper.setFrom(Constants.Mail.FROM)
-            helper.setTo(template.to)
-            helper.setSubject(template.subject)
+            helper.setTo(draft.to)
+            helper.setSubject(draft.subject)
             helper.setText(body, true)
+
+            if (isMultipart) {
+                draft.template.images.forEach { defineImage(helper, it) }
+            }
         }
+    }
+
+    private fun defineImage(helper: MimeMessageHelper, path: String) {
+        helper.addInline(path, ClassPathResource("emails/images/$path"))
     }
 }

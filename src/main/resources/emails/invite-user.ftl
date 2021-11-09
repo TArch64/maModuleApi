@@ -65,7 +65,21 @@
             margin-top: auto;
             margin-bottom: auto;
             font-size: 20px;
-            padding-right: 16px;
+            padding-right: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .join-link {
+                font-size: 18px;
+                padding: 16px 32px;
+            }
+
+            .footer-logo { width: 24px }
+
+            .footer-title {
+                font-size: 12px;
+                padding-right: 0;
+            }
         }
     </style>
 </head>

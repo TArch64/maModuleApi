@@ -12,7 +12,7 @@ import javax.validation.Valid
 @RestController
 @RequestMapping("/admin/seasons")
 @RequireAdminRole
-class SeasonsController(private val coursesFacade: CoursesFacade) {
+class AdminSeasonsController(private val coursesFacade: CoursesFacade) {
     @GetMapping
     fun getSeasons(): List<SeasonResponse> {
         val seasons = coursesFacade.getSeasons()

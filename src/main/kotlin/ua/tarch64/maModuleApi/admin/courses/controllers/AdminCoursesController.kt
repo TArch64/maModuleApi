@@ -15,7 +15,7 @@ import javax.validation.Valid
 @RestController
 @RequireAdminRole
 @RequestMapping("/admin")
-class CoursesController(private val coursesFacade: CoursesFacade) {
+class AdminCoursesController(private val coursesFacade: CoursesFacade) {
     @GetMapping("/seasons/{season_id}/courses")
     fun getCourses(@PathVariable("season_id") seasonId: UUID): List<CourseResponse> {
         return coursesFacade.getCourses(seasonId).map(CourseResponse::fromEntity)

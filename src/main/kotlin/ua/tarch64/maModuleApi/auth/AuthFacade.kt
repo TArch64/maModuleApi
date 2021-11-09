@@ -8,15 +8,11 @@ import org.springframework.security.core.userdetails.User
 import org.springframework.stereotype.Component
 import ua.tarch64.maModuleApi.auth.services.AuthTokenService
 import ua.tarch64.maModuleApi.common.errorHandling.exceptions.ValidationException
-import ua.tarch64.maModuleApi.user.entities.UserEntity
-import ua.tarch64.maModuleApi.user.enums.UserRoles
-import ua.tarch64.maModuleApi.user.services.UsersService
 
 @Component
 class AuthFacade(
     private val authTokenService: AuthTokenService,
-    private val authManager: AuthenticationManager,
-    private val usersService: UsersService
+    private val authManager: AuthenticationManager
 ) {
     fun signIn(email: String, password: String): String {
         try {
@@ -26,10 +22,5 @@ class AuthFacade(
         } catch (exception: BadCredentialsException) {
             throw ValidationException("Email or password is not correct")
         }
-    }
-
-    fun signUp(email: String, username: String, password: String, role: UserRoles): String {
-        usersService.createUser(UserEntity.CreateOptions(role, email, username, password))
-        return signIn(email, password)
     }
 }

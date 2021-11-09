@@ -22,7 +22,7 @@ class WebSecurity(
 ): WebSecurityConfigurerAdapter() {
     override fun configure(http: HttpSecurity) {
         http.cors().and().csrf().disable().authorizeRequests()
-            .antMatchers("/auth/**").permitAll()
+            .antMatchers("/auth/**", "/invitations/**").permitAll()
             .anyRequest().authenticated()
             .and()
             .addFilter(JWTAuthorizationFilter(authenticationManager(), envService))

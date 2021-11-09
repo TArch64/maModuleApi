@@ -34,4 +34,8 @@ data class UserInvitationEntity(
     val course: CourseEntity,
 ) {
     val isAccepted: Boolean get() = status.isAccepted
+
+    fun accepted(): UserInvitationEntity {
+        return copy(status = UserInvitationStatuses.ACCEPTED)
+    }
 }

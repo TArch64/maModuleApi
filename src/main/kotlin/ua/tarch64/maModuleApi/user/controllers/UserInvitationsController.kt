@@ -1,10 +1,9 @@
 package ua.tarch64.maModuleApi.user.controllers
 
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.validation.annotation.Validated
+import org.springframework.web.bind.annotation.*
 import ua.tarch64.maModuleApi.user.UsersFacade
+import ua.tarch64.maModuleApi.user.controllers.requests.AcceptInvitationRequest
 import ua.tarch64.maModuleApi.user.controllers.responses.UserInvitationsResponse
 import java.util.*
 
@@ -16,5 +15,13 @@ class UserInvitationsController(private val facade: UsersFacade) {
         val invitations = facade.findUserInvitations(id)
         if (invitations.isEmpty()) return null
         return UserInvitationsResponse.fromEntities(invitations)
+    }
+
+    @PostMapping("/{id}/accept")
+    fun accept(
+        @PathVariable("id") id: UUID,
+        @Validated @RequestBody body: AcceptInvitationRequest
+    ) {
+        facade.acceptInvitation(id, body.username, body.password)
     }
 }

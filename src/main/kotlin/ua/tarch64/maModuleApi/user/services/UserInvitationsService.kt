@@ -8,6 +8,7 @@ import ua.tarch64.maModuleApi.mailer.entities.EmailDraft
 import ua.tarch64.maModuleApi.mailer.entities.EmailTemplate
 import ua.tarch64.maModuleApi.mailer.services.EmailSender
 import ua.tarch64.maModuleApi.user.entities.UserInvitationEntity
+import ua.tarch64.maModuleApi.user.enums.UserInvitationStatuses
 import ua.tarch64.maModuleApi.user.enums.UserRoles
 import ua.tarch64.maModuleApi.user.repositories.UserInvitationRepository
 import java.util.*
@@ -55,5 +56,10 @@ class UserInvitationsService(
 
     fun findUserInvitations(invitationId: UUID): List<UserInvitationEntity> {
         return repository.findAllByOneId(invitationId)
+    }
+
+    @Transactional
+    fun acceptInvitations(invitationId: UUID): List<UserInvitationEntity> {
+        return findUserInvitations(invitationId).map { it.accepted() }.also { saveAll(it) }
     }
 }

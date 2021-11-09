@@ -32,4 +32,6 @@ data class UserInvitationEntity(
     @ManyToOne
     @JoinColumn(name = "course_id", nullable = false)
     val course: CourseEntity,
-)
+) {
+    val isAccepted: Boolean get() = status.isAccepted
+}

@@ -10,6 +10,7 @@ import ua.tarch64.maModuleApi.mailer.services.EmailSender
 import ua.tarch64.maModuleApi.user.entities.UserInvitationEntity
 import ua.tarch64.maModuleApi.user.enums.UserRoles
 import ua.tarch64.maModuleApi.user.repositories.UserInvitationRepository
+import java.util.*
 
 @Service
 class UserInvitationsService(
@@ -50,5 +51,9 @@ class UserInvitationsService(
     @Transactional
     fun saveAll(entities: List<UserInvitationEntity>): List<UserInvitationEntity> {
         return repository.saveAll(entities)
+    }
+
+    fun findUserInvitations(invitationId: UUID): List<UserInvitationEntity> {
+        return repository.findAllByOneId(invitationId)
     }
 }

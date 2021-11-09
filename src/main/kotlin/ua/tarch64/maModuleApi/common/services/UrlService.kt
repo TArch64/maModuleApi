@@ -6,7 +6,7 @@ import java.util.*
 @Service
 class UrlService(private val envService: EnvService) {
     fun buildJoinUrl(invitationId: UUID): String {
-        return buildUrl(listOf(envService.frontendUrl, "auth/join"), mapOf("iid" to invitationId.toString()))
+        return buildUrl(listOf(envService.frontendUrl, "join"), mapOf("iid" to invitationId.toString()))
     }
 
     fun buildUrl(paths: List<String>, params: Map<String, String>): String {

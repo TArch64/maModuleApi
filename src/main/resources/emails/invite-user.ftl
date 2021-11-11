@@ -83,13 +83,14 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <img src="cid:ma-hero-image.jpg" alt="Welcome to MA Community" class="hero-image">
 
         <section class="main">
             <h1 class="heading">Welcome to MA Community</h1>
-            <p class="description">You have been invited to <b>${courseName}</b></p>
+            <p class="description">You have been invited to <b>${courseName}</b> course</p>
             <a href="${joinPath}" class="join-link">Join Now</a>
         </section>
 

@@ -41,4 +41,9 @@ class CoursesService(
     fun saveMentors(courseMentors: List<CourseMentorEntity>): List<CourseMentorEntity> {
         return courseMentorsRepository.saveAll(courseMentors)
     }
+
+    @Transactional
+    fun deleteCourse(course: CourseEntity) {
+        coursesRepository.delete(course)
+    }
 }

@@ -53,4 +53,8 @@ class CoursesFacade(
     fun changeLeadMentor(courseId: UUID, mentorId: UUID) {
         return coursesService.changeLeadMentor(courseId, mentorId)
     }
+
+    fun deleteCourse(courseId: UUID) {
+        coursesService.deleteCourseById(courseId)
+    }
 }

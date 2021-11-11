@@ -35,6 +35,11 @@ class AdminCoursesController(private val coursesFacade: CoursesFacade) {
         return coursesFacade.getCourseById(courseId)?.let(FullCourseResponse::fromEntity)
     }
 
+    @DeleteMapping("/courses/{course_id}")
+    fun deleteCourse(@PathVariable("course_id") courseId: UUID) {
+        coursesFacade.deleteCourse(courseId)
+    }
+
     @PostMapping("/courses/{course_id}/mentors")
     fun addMentor(
         @PathVariable("course_id") courseId: UUID,

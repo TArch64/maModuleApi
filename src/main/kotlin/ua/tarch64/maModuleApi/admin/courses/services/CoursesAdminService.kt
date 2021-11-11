@@ -67,4 +67,8 @@ class CoursesAdminService(
     fun getMentorById(mentorId: UUID): CourseMentorEntity {
         return coursesService.getMentorById(mentorId) ?: throw ValidationException("Mentor not found")
     }
+
+    fun deleteCourseById(courseId: UUID) {
+        coursesService.deleteCourse(getCourseById(courseId))
+    }
 }

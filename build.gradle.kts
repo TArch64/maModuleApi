@@ -16,30 +16,26 @@ repositories {
     mavenCentral()
 }
 
-object Versions {
-    const val SPRING = "2.5.6"
-    const val JSON_WEB_TOKEN = "0.11.2"
-    const val POSTGRES = "42.3.1"
-    const val JACKSON = "2.13.0"
-    const val FREEMARKER = "2.3.14"
-}
-
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-web:${Versions.SPRING}")
-    implementation("org.springframework.boot:spring-boot-starter-validation:${Versions.SPRING}")
+    implementation("org.springframework.boot:spring-boot-starter-web:2.5.6")
+    implementation("org.springframework.boot:spring-boot-starter-validation:2.5.6")
 
-    implementation("org.springframework.boot:spring-boot-starter-mail:${Versions.SPRING}")
-    implementation("org.freemarker:freemarker:${Versions.FREEMARKER}")
+    implementation("org.springframework.boot:spring-boot-starter-mail:2.5.6")
+    implementation("org.freemarker:freemarker:2.3.31")
 
-    implementation("org.springframework.boot:spring-boot-starter-security:${Versions.SPRING}")
-    implementation("io.jsonwebtoken:jjwt-api:${Versions.JSON_WEB_TOKEN}")
-    runtimeOnly("io.jsonwebtoken:jjwt-impl:${Versions.JSON_WEB_TOKEN}")
-    runtimeOnly("io.jsonwebtoken:jjwt-jackson:${Versions.JSON_WEB_TOKEN}")
+    implementation("org.springframework.boot:spring-boot-starter-security:2.5.6")
+    implementation("io.jsonwebtoken:jjwt-api:0.11.2")
+    runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.2")
+    runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.2")
 
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa:${Versions.SPRING}")
-    runtimeOnly("org.postgresql:postgresql:${Versions.POSTGRES}")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa:2.5.6")
+    runtimeOnly("org.postgresql:postgresql:42.3.1")
 
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:${Versions.JACKSON}")
+    implementation("org.jobrunr:jobrunr-spring-boot-starter:4.0.1")
+    implementation("redis.clients:jedis:3.7.0")
+
+
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.0")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 }

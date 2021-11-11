@@ -2,6 +2,7 @@ package ua.tarch64.maModuleApi.common.services
 
 import io.jsonwebtoken.security.Keys
 import org.springframework.stereotype.Service
+import java.net.URI
 import java.nio.charset.StandardCharsets
 import java.security.Key
 import javax.crypto.SecretKey
@@ -13,6 +14,7 @@ class EnvService {
     val authTokenExpiration: Int = System.getenv("APP_TOKEN_EXPIRATION").toInt()
 
     val frontendUrl: String = System.getenv("FRONTEND_URL")
+    val redisUrl: URI = URI(System.getenv("REDIS_URL"))
 
     private fun createSecretKey(): SecretKey {
         val keyBytes = authTokenSecret.toByteArray(StandardCharsets.UTF_8)

@@ -41,11 +41,16 @@ class AdminCoursesController(private val coursesFacade: CoursesFacade) {
     }
 
     @PostMapping("/courses/{course_id}/mentors")
-    fun addMentor(
+    fun addMentors(
         @PathVariable("course_id") courseId: UUID,
         @Valid @RequestBody body: AddCourseMembersRequest
     ): List<CourseMentorResponse> {
         return coursesFacade.addMentors(courseId, body.emails).map(CourseMentorResponse::fromEntity)
+    }
+
+    @DeleteMapping("/users/mentors/{mentor_id}")
+    fun removeMentor(@PathVariable("mentor_id") courseId: UUID) {
+        return coursesFacade.removeMentorFromCourse(courseId)
     }
 
     @PostMapping("/courses/{course_id}/lead-mentor")

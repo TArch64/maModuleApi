@@ -2,6 +2,7 @@ package ua.tarch64.maModuleApi.courses.entities
 
 import org.hibernate.annotations.GenericGenerator
 import ua.tarch64.maModuleApi.courses.enums.CourseTypes
+import ua.tarch64.maModuleApi.user.entities.UserInvitationEntity
 import java.util.*
 import javax.persistence.*
 
@@ -38,5 +39,13 @@ data class CourseEntity(
         cascade = [CascadeType.ALL],
         fetch = FetchType.LAZY
     )
-    val mentors: List<CourseMentorEntity> = emptyList()
+    val mentors: List<CourseMentorEntity> = emptyList(),
+
+    @OneToMany(
+        targetEntity = UserInvitationEntity::class,
+        mappedBy = "course",
+        cascade = [CascadeType.ALL],
+        fetch = FetchType.LAZY
+    )
+    val invitations: List<UserInvitationEntity> = emptyList()
 )

@@ -43,6 +43,11 @@ class CoursesService(
     }
 
     @Transactional
+    fun removeMentor(mentor: CourseMentorEntity) {
+        courseMentorsRepository.delete(mentor)
+    }
+
+    @Transactional
     fun deleteCourse(course: CourseEntity) {
         coursesRepository.delete(course)
     }

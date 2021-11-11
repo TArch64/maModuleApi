@@ -33,9 +33,12 @@ class CoursesAdminService(
         return coursesService.getById(courseId) ?: throw ValidationException("Course not found")
     }
 
-    fun addMentors(courseId: UUID, emails: List<String>): List<CourseMentorEntity> {
+    fun addMentors(courseId: UUID, requestedEmails: List<String>): List<CourseMentorEntity> {
         val course = getCourseById(courseId)
+        val emails = ignoreInvitedUserEmails(course, requestedEmails)
         val existingUsers = usersService.getByEmailsInRole(UserRoles.MENTOR, emails)
+
+        if (emails.isEmpty()) return emptyList()
 
         if (emails.size > existingUsers.size) {
             val newUserEmails = fetchNewUserEmails(existingUsers, emails)
@@ -44,6 +47,11 @@ class CoursesAdminService(
 
         val mentors = existingUsers.map { CourseMentorEntity(course = course, user = it) }
         return coursesService.saveMentors(mentors)
+    }
+
+    private fun ignoreInvitedUserEmails(course: CourseEntity, emails: List<String>): List<String> {
+        val existingMentorEmails = course.mentors.map { it.user.email }
+        return emails.filterNot { existingMentorEmails.contains(it) }
     }
 
     private fun fetchNewUserEmails(existingUsers: List<UserEntity>, emails: List<String>): List<String> {
@@ -70,5 +78,9 @@ class CoursesAdminService(
 
     fun deleteCourseById(courseId: UUID) {
         coursesService.deleteCourse(getCourseById(courseId))
+    }
+
+    fun removeMentor(mentorId: UUID) {
+        coursesService.removeMentor(getMentorById(mentorId))
     }
 }

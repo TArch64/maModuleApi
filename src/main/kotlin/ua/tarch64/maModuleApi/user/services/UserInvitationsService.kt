@@ -46,7 +46,10 @@ class UserInvitationsService(
                 )
             )
         }
-        emailSender.send(emails)
+
+        emailSender.send(emails) {
+            saveAll(invitations.map { it.sent() })
+        }
     }
 
     @Transactional

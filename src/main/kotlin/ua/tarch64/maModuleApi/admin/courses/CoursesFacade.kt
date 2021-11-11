@@ -57,4 +57,8 @@ class CoursesFacade(
     fun deleteCourse(courseId: UUID) {
         coursesService.deleteCourseById(courseId)
     }
+
+    fun removeMentorFromCourse(mentorId: UUID) {
+        coursesService.removeMentor(mentorId)
+    }
 }

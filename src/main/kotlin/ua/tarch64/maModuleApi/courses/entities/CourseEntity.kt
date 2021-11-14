@@ -42,6 +42,14 @@ data class CourseEntity(
     val mentors: List<CourseMentorEntity> = emptyList(),
 
     @OneToMany(
+        targetEntity = CourseStudentEntity::class,
+        mappedBy = "course",
+        cascade = [CascadeType.ALL],
+        fetch = FetchType.LAZY
+    )
+    val students: List<CourseStudentEntity> = emptyList(),
+
+    @OneToMany(
         targetEntity = UserInvitationEntity::class,
         mappedBy = "course",
         cascade = [CascadeType.ALL],

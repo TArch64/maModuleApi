@@ -19,4 +19,12 @@ class AdminUsersController(private val facade: AdminUsersFacade) {
     ): List<InsecureUserResponse> {
         return facade.searchMentors(query, limit).map(InsecureUserResponse::fromEntity)
     }
+
+    @GetMapping("/students")
+    fun searchStudents(
+        @RequestParam("query") query: String,
+        @RequestParam("limit") limit: Int
+    ): List<InsecureUserResponse> {
+        return facade.searchStudents(query, limit).map(InsecureUserResponse::fromEntity)
+    }
 }

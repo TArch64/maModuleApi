@@ -10,4 +10,8 @@ class AdminUsersFacade(private val usersService: AdminUsersService) {
     fun searchMentors(query: String, limit: Int): List<UserEntity> {
         return usersService.searchUsers(UserRoles.MENTOR, query, limit)
     }
+
+    fun searchStudents(query: String, limit: Int): List<UserEntity> {
+        return usersService.searchUsers(UserRoles.STUDENT, query, limit)
+    }
 }

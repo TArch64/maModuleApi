@@ -8,7 +8,8 @@ data class FullCourseResponse(
     override val id: UUID,
     override val name: String,
     override val type: CourseTypes,
-    val mentors: List<CourseMentorResponse>
+    val mentors: List<CourseMentorResponse>,
+    val students: List<CourseStudentResponse>
 ): ICourseResponse {
     companion object {
         fun fromEntity(entity: CourseEntity): FullCourseResponse {
@@ -16,7 +17,8 @@ data class FullCourseResponse(
                 entity.id,
                 entity.name,
                 entity.type,
-                entity.mentors.map(CourseMentorResponse::fromEntity)
+                entity.mentors.map(CourseMentorResponse::fromEntity),
+                entity.students.map(CourseStudentResponse::fromEntity)
             )
         }
     }

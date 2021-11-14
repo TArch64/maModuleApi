@@ -35,7 +35,8 @@ class UserInvitationsService(
             name = "invite-user",
             images = listOf("ma-hero-image.jpg", "ma-logo-black.jpg")
         )
-        val emails = invitations.map {
+
+        emailSender.send(invitations.map {
             EmailDraft(
                 to = it.email,
                 subject = "Welcome to MA Community!",
@@ -45,11 +46,7 @@ class UserInvitationsService(
                     "joinPath" to urlService.buildJoinUrl(it.id)
                 )
             )
-        }
-
-        emailSender.send(emails) {
-            saveAll(invitations.map { it.sent() })
-        }
+        })
     }
 
     @Transactional

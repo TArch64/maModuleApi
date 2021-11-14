@@ -38,8 +38,4 @@ data class UserInvitationEntity(
     fun accepted(): UserInvitationEntity {
         return copy(status = UserInvitationStatuses.ACCEPTED)
     }
-
-    fun sent(): UserInvitationEntity {
-        return copy(status = UserInvitationStatuses.SENT)
-    }
 }

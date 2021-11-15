@@ -5,6 +5,6 @@ enum class UserRoles(val title: String) {
     STUDENT("Student"),
     ADMIN("Admin");
 
-    val isMentor: Boolean get() = this === MENTOR
-    val isStudent: Boolean get() = this === STUDENT
+    val isMentor: Boolean get() = this == MENTOR
+    val isStudent: Boolean get() = this == STUDENT
 }

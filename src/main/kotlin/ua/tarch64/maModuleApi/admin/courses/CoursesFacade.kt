@@ -5,6 +5,7 @@ import ua.tarch64.maModuleApi.admin.courses.services.SeasonsAdminService
 import ua.tarch64.maModuleApi.admin.courses.services.CoursesAdminService
 import ua.tarch64.maModuleApi.courses.entities.CourseEntity
 import ua.tarch64.maModuleApi.courses.entities.CourseMentorEntity
+import ua.tarch64.maModuleApi.courses.entities.CourseStudentEntity
 import ua.tarch64.maModuleApi.courses.entities.SeasonEntity
 import ua.tarch64.maModuleApi.courses.enums.CourseTypes
 import java.util.*
@@ -60,5 +61,9 @@ class CoursesFacade(
 
     fun removeMentorFromCourse(mentorId: UUID) {
         coursesService.removeMentor(mentorId)
+    }
+
+    fun addStudents(courseId: UUID, emails: List<String>): List<CourseStudentEntity> {
+        return coursesService.addStudents(courseId, emails)
     }
 }

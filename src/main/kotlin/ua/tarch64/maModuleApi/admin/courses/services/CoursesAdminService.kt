@@ -5,6 +5,7 @@ import ua.tarch64.maModuleApi.admin.users.services.AdminUsersService
 import ua.tarch64.maModuleApi.common.errorHandling.exceptions.ValidationException
 import ua.tarch64.maModuleApi.courses.entities.CourseEntity
 import ua.tarch64.maModuleApi.courses.entities.CourseMentorEntity
+import ua.tarch64.maModuleApi.courses.entities.CourseStudentEntity
 import ua.tarch64.maModuleApi.courses.enums.CourseMentorRoles
 import ua.tarch64.maModuleApi.courses.enums.CourseTypes
 import ua.tarch64.maModuleApi.courses.services.CoursesService
@@ -42,7 +43,7 @@ class CoursesAdminService(
 
         if (emails.size > existingUsers.size) {
             val newUserEmails = fetchNewUserEmails(existingUsers, emails)
-            userInvitationsService.inviteMentors(newUserEmails, course)
+            userInvitationsService.invite(UserRoles.MENTOR, newUserEmails, course)
         }
 
         val mentors = existingUsers.map { CourseMentorEntity(course = course, user = it) }
@@ -82,5 +83,21 @@ class CoursesAdminService(
 
     fun removeMentor(mentorId: UUID) {
         coursesService.removeMentor(getMentorById(mentorId))
+    }
+
+    fun addStudents(courseId: UUID, requestedEmails: List<String>): List<CourseStudentEntity> {
+        val course = getCourseById(courseId)
+        val emails = ignoreInvitedUserEmails(course, requestedEmails)
+        val existingUsers = usersService.getByEmailsInRole(UserRoles.STUDENT, emails)
+
+        if (emails.isEmpty()) return emptyList()
+
+        if (emails.size > existingUsers.size) {
+            val newUserEmails = fetchNewUserEmails(existingUsers, emails)
+            userInvitationsService.invite(UserRoles.STUDENT, newUserEmails, course)
+        }
+
+        val students = existingUsers.map { CourseStudentEntity(course = course, user = it) }
+        return coursesService.saveStudents(students)
     }
 }

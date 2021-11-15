@@ -8,7 +8,6 @@ import ua.tarch64.maModuleApi.mailer.entities.EmailDraft
 import ua.tarch64.maModuleApi.mailer.entities.EmailTemplate
 import ua.tarch64.maModuleApi.mailer.services.EmailSender
 import ua.tarch64.maModuleApi.user.entities.UserInvitationEntity
-import ua.tarch64.maModuleApi.user.enums.UserInvitationStatuses
 import ua.tarch64.maModuleApi.user.enums.UserRoles
 import ua.tarch64.maModuleApi.user.repositories.UserInvitationRepository
 import java.util.*
@@ -19,13 +18,9 @@ class UserInvitationsService(
     private val urlService: UrlService,
     private val emailSender: EmailSender
 ) {
-    fun inviteMentors(emails: List<String>, course: CourseEntity) {
+    fun invite(role: UserRoles, emails: List<String>, course: CourseEntity) {
         val invitations = emails.map {
-            UserInvitationEntity(
-                email = it,
-                role = UserRoles.MENTOR,
-                course = course
-            )
+            UserInvitationEntity(email = it, role = role, course = course)
         }
         sendInvites(saveAll(invitations))
     }

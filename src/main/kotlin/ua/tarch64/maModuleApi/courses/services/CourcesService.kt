@@ -5,15 +5,18 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import ua.tarch64.maModuleApi.courses.entities.CourseEntity
 import ua.tarch64.maModuleApi.courses.entities.CourseMentorEntity
+import ua.tarch64.maModuleApi.courses.entities.CourseStudentEntity
 import ua.tarch64.maModuleApi.courses.enums.CourseMentorRoles
 import ua.tarch64.maModuleApi.courses.repositories.CourseMentorsRepository
+import ua.tarch64.maModuleApi.courses.repositories.CourseStudentsRepository
 import ua.tarch64.maModuleApi.courses.repositories.CoursesRepository
 import java.util.*
 
 @Service
 class CoursesService(
     private val coursesRepository: CoursesRepository,
-    private val courseMentorsRepository: CourseMentorsRepository
+    private val courseMentorsRepository: CourseMentorsRepository,
+    private val courseStudentsRepository: CourseStudentsRepository
 ) {
     fun getById(courseId: UUID): CourseEntity? {
         return coursesRepository.findByIdOrNull(courseId)
@@ -50,5 +53,10 @@ class CoursesService(
     @Transactional
     fun deleteCourse(course: CourseEntity) {
         coursesRepository.delete(course)
+    }
+
+    @Transactional
+    fun saveStudents(students: List<CourseStudentEntity>): List<CourseStudentEntity> {
+        return courseStudentsRepository.saveAll(students)
     }
 }

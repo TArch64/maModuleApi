@@ -25,14 +25,13 @@ class UsersFacade(
     }
 
     fun acceptInvitation(invitationId: UUID, username: String, password: String) {
-        val invitations = userInvitationsService.acceptInvitations(invitationId)
+        val invitations = userInvitationsService.acceptInvitations(invitationId).distinctBy { it.id }
         val user = usersService.createUser(UserEntity.CreateOptions(
             role = invitations.first().role,
             email = invitations.first().email,
             username = username,
             password = password
         ))
-        val courses = invitations.map { it.course }.distinctBy { it.id }
-        userCoursesService.addUserToCourses(user, courses)
+        userCoursesService.addUserToCourses(user, invitations)
     }
 }
